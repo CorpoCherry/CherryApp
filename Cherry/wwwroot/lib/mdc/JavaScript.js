@@ -1,0 +1,1 @@
+﻿import MDCCheckbox from '@material/checkbox';

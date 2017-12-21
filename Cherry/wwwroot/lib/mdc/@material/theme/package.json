@@ -1,0 +1,46 @@
+{
+  "_from": "@material/theme",
+  "_id": "@material/theme@0.27.0",
+  "_inBundle": false,
+  "_integrity": "sha512-H41/AgCfuCN6jziasTiuNnRtASUBAUOwWAVyWHrcUBSyoUgYMsVpalrMk3goVDMiVPVrxL+yjg8uE6t0zemmbw==",
+  "_location": "/@material/theme",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@material/theme",
+    "name": "@material/theme",
+    "escapedName": "@material%2ftheme",
+    "scope": "@material",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@material/theme/-/theme-0.27.0.tgz",
+  "_shasum": "32fd72addfec09bf22e83f66f36a7ebbdc123461",
+  "_spec": "@material/theme",
+  "_where": "D:\\MOJE\\Projekty\\Otwarte\\CherryAppManagment\\CherryAppManagment",
+  "bugs": {
+    "url": "https://github.com/material-components/material-components-web/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "The Material Components for the web theming system",
+  "homepage": "https://github.com/material-components/material-components-web#readme",
+  "keywords": [
+    "material components",
+    "material design",
+    "theme"
+  ],
+  "license": "Apache-2.0",
+  "name": "@material/theme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/material-components/material-components-web.git"
+  },
+  "version": "0.27.0"
+}
