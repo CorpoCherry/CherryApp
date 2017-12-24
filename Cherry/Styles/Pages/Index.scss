@@ -1,0 +1,15 @@
+﻿@import '../Core/main.scss';
+@import '../MDC/@material/textfield/mdc-text-field.scss';
+@import '../MDC/@material/form-field/mdc-form-field.scss';
+@import '../MDC/@material/linear-progress/mdc-linear-progress.scss';
+@import '../MDC/@material/toolbar/mdc-toolbar.scss';
+@import '../MDC/@material/checkbox/mdc-checkbox.scss';
+@import '../MDC/@material/drawer/mdc-drawer.scss';
+@import '../MDC/@material/list/mdc-list.scss';
+@import '../MDC/@material/ripple/mdc-ripple.scss';
+
+.main
+{
+    padding-left: 10px;
+    overflow: auto;
+}

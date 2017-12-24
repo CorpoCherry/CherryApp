@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Cherry.Data.Administration;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,6 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Cherry.Web.Pages
 {
+    [AllowAnonymous]
     public class LoginModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;
@@ -43,13 +45,20 @@ namespace Cherry.Web.Pages
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public IActionResult OnGet(string returnUrl = null)
+        public IActionResult OnGet(string returnUrl)
         {
+            if (!string.IsNullOrEmpty(ErrorMessage))
+            {
+                ModelState.AddModelError(string.Empty, ErrorMessage);
+            }
+
+            ReturnUrl = returnUrl;
             return Page();
         }
 
-        public async Task<IActionResult> OnPostLoginAsync()
+        public async Task<IActionResult> OnPostLoginAsync(string returnUrl)
         {
+            ReturnUrl = returnUrl;
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(Input.Login, Input.Password, Input.Remember, false);

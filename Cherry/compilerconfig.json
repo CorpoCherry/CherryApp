@@ -1,6 +1,10 @@
 ﻿[
   {
-    "outputFile": "wwwroot/lib/mdc/Test.css",
-    "inputFile": "wwwroot/lib/mdc/Test.scss"
+    "outputFile": "wwwroot/css/pages/login.css",
+    "inputFile": "Styles/Pages/Login.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/pages/index.css",
+    "inputFile": "Styles/Pages/Index.scss"
   }
 ]

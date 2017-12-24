@@ -4,7 +4,7 @@
     ViewData["Title"] = "Logowanie";
 }
 @section Styles {
-    <link rel="stylesheet" href="/css/pages/login.min.css" />
+    <link rel="stylesheet" href="~/css/pages/login.min.css" />
 }
 <div class="mdc-theme--background mdc-elevation--z24 mdc-elevation-transition" id="logincard">
     <div class="mdc-linear-progress mdc-linear-progress--indeterminate" role="progressbar" id="progressBar">
@@ -48,8 +48,8 @@
             <label class="center" for="remembercheckbox">Zapamiętaj mnie</label>
         </div>
         <br>
-        <button type="submit" id="loginBtn" asp-page-handler="Login" class="mdc-button mdc-button--raised margindown">ZALOGUJ</button>
+        <button type="submit" id="loginBtn" asp-page-handler="Login" asp-route-returnUrl="@Model.ReturnUrl" class="mdc-button mdc-button--raised margindown">ZALOGUJ</button>
     </form>
 </div>
 @section Scripts {
-    <script src="/js/pages/index.min.js"></script>}
+    }

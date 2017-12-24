@@ -5,12 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cherry.Data.Administration;
 using CherryAppManagment.DataContexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +35,9 @@ namespace Cherry.Web
         {
             // ================ DB Contexts ================
             services.AddDbContext<IdentityDb>
-            (options => options.UseMySQL(Configuration.GetConnectionString("MySQLlocal")));
+            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Identity_local")));
+            services.AddDbContext<SchoolsDb>
+            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Schools_local")));
 
             // ================ Identity ================
             services.AddIdentity<User, IdentityRole>()
@@ -59,9 +63,13 @@ namespace Cherry.Web
             });
 
             // ================ MVC ================
-            services.AddMvc().AddRazorPagesOptions(options =>
+            services.AddMvc(option =>
             {
-                options.Conventions.AllowAnonymousToPage("/Login");
+                var policy = new AuthorizationPolicyBuilder()
+                     .RequireAuthenticatedUser()
+                     .Build();
+                option.Filters.Add(new AuthorizeFilter(policy));
+
             });
 
             // ================ Cookies ================
@@ -69,7 +77,7 @@ namespace Cherry.Web
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.Cookie.Expiration = TimeSpan.FromDays(31);
+                options.Cookie.Expiration = new TimeSpan(0, 0, 0, 0, 1);
                 options.LoginPath = "/Login"; // If the LoginPath is not set here, ASP.NET Core will default to /Account/Login
                 options.LogoutPath = "/Logout"; // If the LogoutPath is not set here, ASP.NET Core will default to /Account/Logout
                 options.AccessDeniedPath = "/AccessDenied"; // If the AccessDeniedPath is not set here, ASP.NET Core will default to /Account/AccessDenied
@@ -78,7 +86,7 @@ namespace Cherry.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IdentityDb identityDb, UserManager<User> userManager)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IdentityDb identityDb, UserManager<User> userManager, SchoolsDb schoolsDb)
         {
             if (env.IsDevelopment())
             {
@@ -119,6 +127,13 @@ namespace Cherry.Web
 
                 userManager.CreateAsync(root, "rootBasic98");
 
+            }
+
+            // ================ Schools ================
+            if(!schoolsDb.Database.EnsureCreated())
+            {
+                schoolsDb.Database.EnsureDeleted();
+                schoolsDb.Database.EnsureCreated();
             }
         }
     }
