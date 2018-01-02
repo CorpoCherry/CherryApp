@@ -431,7 +431,7 @@ __pycache__/
 # should be stored in the .pubxml.user file.
 
 # Generated
-js/pages/
-css/pages/
+/js/pages/
+/css/pages/
 
 # End of https://www.gitignore.io/api/csharp,visualstudio
