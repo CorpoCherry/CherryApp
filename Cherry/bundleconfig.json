@@ -1,15 +1,2 @@
-﻿[
-  {
-    "outputFileName": "wwwroot/js/pages/mdc.min.js",
-    "inputFiles": [
-      "Styles/MDC/material-components-web.js"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/pages/mdc2.min.js",
-    "inputFiles": [
-      "Styles/MDC/@material/textfield/dist/mdc.textfield.js",
-      "Styles/MDC/@material/auto-init/dist/mdc.autoInit.js"
-    ]
-  }
+[
 ]

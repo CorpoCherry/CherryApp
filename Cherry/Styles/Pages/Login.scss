@@ -1,8 +1,8 @@
-﻿@import '../MDC/@material/textfield/mdc-text-field.scss';
-@import '../MDC/@material/form-field/mdc-form-field.scss';
-@import '../MDC/@material/linear-progress/mdc-linear-progress.scss';
-@import '../MDC/@material/checkbox/mdc-checkbox.scss';
-@import '../Core/main.scss';
+﻿@import '@material/textfield/mdc-text-field';
+@import '@material/form-field/mdc-form-field';
+@import '@material/linear-progress/mdc-linear-progress';
+@import '@material/checkbox/mdc-checkbox';
+@import '../Core/main';
 
 body {
     background: linear-gradient(235deg, #ff0000, #0091ff, #ff0000, #0091ff);

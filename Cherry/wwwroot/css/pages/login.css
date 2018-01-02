@@ -1,4 +1,4 @@
-﻿@keyframes mdc-ripple-fg-radius-in {
+@keyframes mdc-ripple-fg-radius-in {
   from {
     animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1); }
@@ -2726,4 +2726,3 @@ body {
 
 .center {
   font-size: 16px; }
-

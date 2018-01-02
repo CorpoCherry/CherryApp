@@ -1,10 +1,10 @@
 ﻿$mdc-theme-primary: #b71c1c; // Red 900
 $mdc-theme-secondary: #1565c0; // Blue 800
 
-@import "../MDC/@material/button/mdc-button.scss";
-@import "../MDC/@material/typography/mdc-typography.scss";
-@import '../MDC/@material/theme/mdc-theme.scss';
-@import '../MDC/@material/elevation/mdc-elevation.scss';
+@import "@material/button/mdc-button";
+@import "@material/typography/mdc-typography";
+@import '@material/theme/mdc-theme';
+@import '@material/elevation/mdc-elevation';
 
 .margindown {
     margin-bottom: 20px;
