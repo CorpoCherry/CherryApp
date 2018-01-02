@@ -1,9 +1,0 @@
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\bin\Debug\netcoreapp2.0\Cherry.Data.deps.json
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\bin\Debug\netcoreapp2.0\Cherry.Data.dll
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\bin\Debug\netcoreapp2.0\Cherry.Data.pdb
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\obj\Debug\netcoreapp2.0\Cherry.Data.csprojResolveAssemblyReference.cache
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\obj\Debug\netcoreapp2.0\Cherry.Data.csproj.CoreCompileInputs.cache
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\obj\Debug\netcoreapp2.0\Cherry.Data.AssemblyInfoInputs.cache
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\obj\Debug\netcoreapp2.0\Cherry.Data.AssemblyInfo.cs
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\obj\Debug\netcoreapp2.0\Cherry.Data.dll
-C:\Users\pitst\Documents\Visual Studio 2017\Projects\Cherry\Cherry.Data\obj\Debug\netcoreapp2.0\Cherry.Data.pdb
