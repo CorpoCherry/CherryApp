@@ -29,10 +29,7 @@ function getScripts() {
                 name: 'js/pages/' + file.substring(0, file.length - 3).toLowerCase() + ReturnGoodFileEnd("js"),
                 path: './Scripts/Pages/' + file
             };
-        }).reduce((memo, file) => {
-            memo[file.name] = file.path;
-            return memo;
-        }, {});
+        });
 }
 function getStyles() {
     return fs.readdirSync('./Styles/Pages/')
@@ -44,15 +41,30 @@ function getStyles() {
                 name: 'css/pages/' + file.substring(0, file.length - 5).toLowerCase() + ReturnGoodFileEnd("css"),
                 path: './Styles/Pages/' + file
             };
-        }).reduce((memo, file) => {
-            memo[file.name] = file.path;
-            return memo;
-        }, {});
+        });
+}
+
+/*
+.reduce((memo, file) => {
+    memo[file.name] = file.path;
+    return memo;
+}, {})
+*/
+
+function getAll() {
+    var scripts = getScripts();
+    var styles = getStyles();
+    var all = scripts.concat(styles);
+
+    return all.reduce((memo, file) => {
+        memo[file.name] = file.path;
+        return memo;
+    }, {});
 }
 
 var config =
     {
-        entry: getStyles,
+        entry: getAll,
         output: {
             path: resolve(__dirname, 'wwwroot'),
             filename: '[name]'
