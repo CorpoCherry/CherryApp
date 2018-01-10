@@ -7,9 +7,11 @@
 @import '@material/drawer/mdc-drawer';
 @import '@material/list/mdc-list';
 @import '@material/ripple/mdc-ripple';
+@import '../Core/mdc-drawer-ios-fix.scss';
 
 .main
 {
     padding-left: 10px;
     overflow: auto;
 }
+

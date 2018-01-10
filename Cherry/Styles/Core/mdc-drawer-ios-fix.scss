@@ -1,0 +1,17 @@
+﻿@supports (-webkit-overflow-scrolling: touch) {
+    .mdc-temporary-drawer {
+        &--animating {
+            &::before {
+                transition: opacity .3s ease-out;
+            }
+
+            &.mdc-temporary-drawer--open .mdc-temporary-drawer__drawer {
+                transition: transform .3s ease-out;
+            }
+
+            .mdc-temporary-drawer__drawer {
+                transition: none;
+            }
+        }
+    }
+}

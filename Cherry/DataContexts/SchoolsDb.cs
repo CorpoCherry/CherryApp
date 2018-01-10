@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Cherry.Data;
 using System.Collections.Generic;
 
-namespace CherryAppManagment.DataContexts
+namespace Cherry.Web.DataContexts
 {
     public class SchoolsDb : DbContext
     {

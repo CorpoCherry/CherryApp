@@ -3,9 +3,12 @@
 @{
     ViewData["Title"] = "Logowanie";
 }
-@section Styles {
-    <link rel="stylesheet" href="~/css/pages/login.min.css" />
-}
+@section Styles {<environment names="Production">
+<link rel="stylesheet" href="~/css/pages/login.min.css" asp-append-version="true"/>
+</environment>
+<environment names="Development">
+<link rel="stylesheet" href="~/css/pages/login.css" asp-append-version="true"/>
+</environment>}
 <div class="mdc-theme--background mdc-elevation--z24 mdc-elevation-transition" id="logincard">
     <div class="mdc-linear-progress mdc-linear-progress--indeterminate" role="progressbar" id="progressBar">
         <div class="mdc-linear-progress__buffering-dots"></div>
@@ -52,5 +55,10 @@
     </form>
 </div>
 @section Scripts {
-    <script src="~/js/pages/login.js"></script>
+    <environment names="Production">
+        <script src="~/js/pages/login.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Development">
+        <script src="~/js/pages/login.js" asp-append-version="true"></script>
+    </environment>
 }

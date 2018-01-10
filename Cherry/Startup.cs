@@ -4,7 +4,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Cherry.Data.Administration;
-using CherryAppManagment.DataContexts;
+using Cherry.Web.DataContexts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +23,18 @@ namespace Cherry.Web
 {
     public class Startup
     {
+        string DBtype
+        {
+            get
+            {
+            #if DEVELOPMENT
+                return "_local";
+            #else
+                return "_online";
+            #endif
+            }
+        }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,9 +47,9 @@ namespace Cherry.Web
         {
             // ================ DB Contexts ================
             services.AddDbContext<IdentityDb>
-            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Identity_local")));
+            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Identity" + DBtype)));
             services.AddDbContext<SchoolsDb>
-            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Schools_local")));
+            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Schools" + DBtype)));
 
             // ================ Identity ================
             services.AddIdentity<User, IdentityRole>()
@@ -115,25 +127,52 @@ namespace Cherry.Web
             });
 
             // ================ Identity ================
-            if (identityDb.Database.EnsureCreated())
+            if (!identityDb.Database.EnsureCreated())
             {
-
+                //ONLY FOR TEST
+                identityDb.Database.EnsureDeleted();
+                identityDb.Database.EnsureCreated();
+                //
+                
                 var root = new User
                 {
+                    FirstName = "Alan (ROOT)",
+                    LastName = "Borowy",
                     UserName = "root",
                     Email = "root@cherryapp.pl",
                     EmailConfirmed = true
                 };
 
-                userManager.CreateAsync(root, "rootBasic98");
+                var manager = new User
+                {
+                    FirstName = "Alan (MGR)",
+                    LastName = "Borowy",
+                    UserName = "manager",
+                    Email = "manager@cherryapp.pl",
+                    EmailConfirmed = true
+                };
 
+                var user = new User
+                {
+                    FirstName = "Alan (USER)",
+                    LastName = "Borowy",
+                    UserName = "user",
+                    Email = "user@cherryapp.pl",
+                    EmailConfirmed = true
+                };
+
+                userManager.CreateAsync(root, "rootBasic98");
+                userManager.CreateAsync(manager, "managerBasic98");
+                userManager.CreateAsync(user, "userBasic98");
             }
 
             // ================ Schools ================
             if(!schoolsDb.Database.EnsureCreated())
             {
+                //ONLY FOR TEST
                 schoolsDb.Database.EnsureDeleted();
                 schoolsDb.Database.EnsureCreated();
+                //
             }
         }
     }

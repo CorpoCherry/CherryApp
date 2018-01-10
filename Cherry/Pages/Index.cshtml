@@ -3,9 +3,14 @@
 @{
     ViewData["Title"] = "Panel";
 }
-@section Styles {
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/pages/index.min.css" />
+@section Styles
+{
+    <environment names="Production">
+    <link rel="stylesheet" href="~/css/pages/index.min.css" asp-append-version="true"/>
+    </environment>
+    <environment names="Development">
+    <link rel="stylesheet" href="~/css/pages/index.css" asp-append-version="true"/>
+    </environment>
 }
 <div class="mdc-toolbar mdc-toolbar--fixed">
     <div class="mdc-toolbar__row">
@@ -23,5 +28,10 @@
     <p class="mdc-typography--body1">Więcej opcji w menu na górze...</p>
 </main>
 @section Scripts{
-    <script src="~/js/pages/index.js"></script>
+    <environment names="Production">
+        <script src="~/js/pages/index.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Development">
+        <script src="~/js/pages/index.js" asp-append-version="true"></script>
+    </environment>
 }

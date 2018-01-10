@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='Run - Development' />
+﻿/// <binding />
 "use strict";
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const MinifyPlugin = require("babel-minify-webpack-plugin");
@@ -7,9 +7,27 @@ const webpack = require('webpack');
 const fs = require('fs');
 const {  join, dirname, resolve } = require('path');
 const extractSCSS = new ExtractTextPlugin('[name]');
-
+const rimraf = require('rimraf');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const resizer = require('node-image-resizer');
 const Production = (process.env.NODE_ENV === 'production');
 
+ClearRoot();
+
+var AdditionalFiles = 
+    [
+        {
+            name: '/sw.js',
+            path: './Scripts/sw.js'
+        }
+    ]
+
+function ClearRoot() {
+    var x = fs.readdirSync('wwwroot');
+    x.forEach(element => {
+        rimraf('wwwroot/' + element, function () { console.log('Cleared wwwroot/' + element); });
+    });
+}
 function ReturnGoodFileEnd(name) {
     if (Production) {
         return ".min." + name;
@@ -18,7 +36,6 @@ function ReturnGoodFileEnd(name) {
         return "." + name;
     }
 }
-
 function getScripts() {
     return fs.readdirSync('./Scripts/Pages/')
         .filter(
@@ -28,6 +45,18 @@ function getScripts() {
             return {
                 name: 'js/pages/' + file.substring(0, file.length - 3).toLowerCase() + ReturnGoodFileEnd("js"),
                 path: './Scripts/Pages/' + file
+            };
+        });
+}
+function getGlobalScripts() {
+    return fs.readdirSync('./Scripts/Global/')
+        .filter(
+        (file) => file.match(/.*\.js$/)
+        )
+        .map((file) => {
+            return {
+                name: 'js/global/' + file.substring(0, file.length - 3).toLowerCase() + ReturnGoodFileEnd("js"),
+                path: './Scripts/Global/' + file
             };
         });
 }
@@ -43,23 +72,20 @@ function getStyles() {
             };
         });
 }
-
-/*
-.reduce((memo, file) => {
-    memo[file.name] = file.path;
-    return memo;
-}, {})
-*/
-
 function getAll() {
     var scripts = getScripts();
     var styles = getStyles();
-    var all = scripts.concat(styles);
+    var stylesg = getGlobalScripts();
+    var all = scripts.concat(styles).concat(stylesg).concat(AdditionalFiles);
 
     return all.reduce((memo, file) => {
         memo[file.name] = file.path;
         return memo;
     }, {});
+}
+
+function getFontsLoader() {
+    return Production ? 'file-loader?name=/fonts/[name].[hash].[ext]' : 'file-loader?name=/fonts/[name].[ext]';
 }
 
 var config =
@@ -73,6 +99,10 @@ var config =
         {
             rules:
             [
+                {
+                    test: /\.(eot|svg|ttf|woff|woff2)$/,
+                    loader: getFontsLoader
+                },
                 {
                     test: /\.scss$/,
                     use: ExtractTextPlugin.extract(
@@ -121,7 +151,21 @@ var config =
         target: "web",
         plugins:
         [
-            extractSCSS
+            extractSCSS,
+            new CopyWebpackPlugin(
+                [
+                    {
+                        from: './Other/Manifests/manifest.json'
+                    },
+                    {
+                        from: './Other/Manifests/browserconfig.xml'
+                    },
+                    {
+                        from: './Other/Images/Touch',
+                        to: 'img/touch'
+                    },
+
+                ])
         ]
     };
 
@@ -131,8 +175,6 @@ if (Production) {
             new webpack.optimize.ModuleConcatenationPlugin(),
             new UglifyJsPlugin()
     );
-    
-    //config.module.rules[1].use[0].query.presets.push('minify');
 }
 else {
     console.log("Development MODE");

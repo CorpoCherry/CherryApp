@@ -3,11 +3,58 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    @* Apple Specific *@
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="CherryPanel">
+    <link rel="apple-touch-icon" sizes="57x57" href="/img/touch/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/img/touch/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/img/touch/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/touch/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/img/touch/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/img/touch/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/img/touch/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/img/touch/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/touch/apple-touch-icon-180x180.png">
+    <link rel="mask-icon" href="/img/touch/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/img/touch/favicon.ico">
+    <link rel="apple-touch-startup-image" href="/img/launch.png" />
+    <link href="/img/touch/apple-big-portrait.png" rel="apple-touch-startup-image">
+    <link href="/img/touch/apple-small-portrait.png" media="(device-width: 640px) and (orientation: portrait)" rel="apple-touch-startup-image">
+    <link href="/img/touch/apple-small-landscape.png" media="(device-width: 640px) and (orientation: landscape)" rel="apple-touch-startup-image">
+    <link href="/img/touch/apple-medium-portrait.png" media="(device-width: 750px) and (orientation: portrait)" rel="apple-touch-startup-image">
+    <link href="/img/touch/apple-medium-landscape.png" media="(device-width: 750px) and (orientation: landscape)" rel="apple-touch-startup-image">
+    <link href="/img/touch/apple-big-portrait.png" media="(device-width: 1242px) and (orientation: portrait)" rel="apple-touch-startup-image">
+    <link href="/img/touch/apple-big-landscape.png" media="(device-width: 1242px) and (orientation: landscape)" rel="apple-touch-startup-image">
+    <link href="/img/touch/apple-super-portrait.png" media="(device-width: 1125px) and (orientation: portrait)" rel="apple-touch-startup-image">
+    <link href="/img/touch/apple-super-landscape.png" media="(device-width: 1125px) and (orientation: landscape)" rel="apple-touch-startup-image">
+    @*<link href="apple-touch-startup-image-1536x2008.png" media="(device-width: 1536px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">*@
+    @*iPad (Retina, landscape) SPLASHSCREEN
+        <link href="apple-touch-startup-image-2048x1496.png" media="(device-width: 1536px)  and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">*@
+    @* Google Specific *@
+    <link rel="manifest" href="/manifest.json">
+    @* Microsoft Specific *@
+    <meta name="application-name" content="CherryPanel" />
+    @*<meta name="msapplication-TileColor" content="#ffeeee">*@
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="theme-color" content="#ffeeee">
+    @* Global *@
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/touch/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="194x194" href="/img/touch/favicon-194x194.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/img/touch/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/touch/favicon-16x16.png">
+
     <title>@ViewData["Title"] - Cherry</title>
     @RenderSection("Styles", required: false)
 </head>
 <body class="mdc-typography">
     @RenderBody()
     @RenderSection("Scripts", required: false)
+    <environment names="Production">
+        <script src="~/js/global/global.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Development">
+        <script src="~/js/global/global.js" asp-append-version="true"></script>
+    </environment>
 </body>
 </html>

@@ -13,19 +13,21 @@ namespace Cherry.Web.Pages
     public class IndexModel : PageModel
     {
         public AdditionalViews._MenuModel _MenuModel { get; set; }
-        private UserManager<User> userManager { get; set; }
+        private UserManager<User> UserManager { get; set; }
         public User CurrentUser { get; set; }
 
         public IndexModel(UserManager<User> usmg)
         {
-            userManager = usmg;
+            UserManager = usmg;
         }
 
         public async Task OnGet()
         {
-            var userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            CurrentUser = await userManager.FindByIdAsync(userId);
-            _MenuModel = new AdditionalViews._MenuModel(CurrentUser);
+            if (ModelState.IsValid)
+            {
+                CurrentUser = await UserManager.GetUserAsync(User);
+                _MenuModel = new AdditionalViews._MenuModel(CurrentUser);
+            }
         }
     }
 }
