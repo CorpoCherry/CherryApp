@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using Cherry.Data.Schools;
 
-namespace Cherry.Data.Schools
+namespace Cherry.Data.Administration
 {
-    public class Student
+    public class School
     {
         [Column(TypeName = "char(36)")]
         [Key]
@@ -18,19 +19,16 @@ namespace Cherry.Data.Schools
             }
             set
             {
-                _id = Guid.NewGuid().ToString();
+                _id = value;
+                if (string.IsNullOrEmpty(value))
+                {
+                    _id = Guid.NewGuid().ToString();
+                }
             }
         }
         private string _id { get; set; }
 
         public string Name { get; set; }
-        public string LastName { get; set; }
-
-        public string Login { get; set; }
-        public string PasswordHash { get; set; }
-
-        public DateTime LastLogin { get; set; }
-        public DateTime LastFullLogin { get; set; }
-        public bool IsLocked { get; set; }
+        public string Tag { get; set; }
     }
 }

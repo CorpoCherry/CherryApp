@@ -23,18 +23,6 @@ namespace Cherry.Web
 {
     public class Startup
     {
-        string DBtype
-        {
-            get
-            {
-            #if DEVELOPMENT
-                return "_local";
-            #else
-                return "_online";
-            #endif
-            }
-        }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -47,9 +35,11 @@ namespace Cherry.Web
         {
             // ================ DB Contexts ================
             services.AddDbContext<IdentityDb>
-            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Identity" + DBtype)));
-            services.AddDbContext<SchoolsDb>
-            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Schools" + DBtype)));
+            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Identity" + Parameters.DBtype)));
+            services.AddDbContext<ConfigurationContextDb>
+            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Configuration" + Parameters.DBtype)));
+            services.AddDbContext<SchoolDb>();
+            services.AddScoped<IConfigurationContextDb>(provider => provider.GetService<ConfigurationContextDb>());
 
             // ================ Identity ================
             services.AddIdentity<User, IdentityRole>()
@@ -98,7 +88,7 @@ namespace Cherry.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IdentityDb identityDb, UserManager<User> userManager, SchoolsDb schoolsDb)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IdentityDb identityDb, UserManager<User> userManager, ConfigurationContextDb app_configuration)
         {
             if (env.IsDevelopment())
             {
@@ -127,13 +117,8 @@ namespace Cherry.Web
             });
 
             // ================ Identity ================
-            if (!identityDb.Database.EnsureCreated())
-            {
-                //ONLY FOR TEST
-                identityDb.Database.EnsureDeleted();
-                identityDb.Database.EnsureCreated();
-                //
-                
+            if (identityDb.Database.EnsureCreated())
+            {                
                 var root = new User
                 {
                     FirstName = "Alan (ROOT)",
@@ -166,14 +151,36 @@ namespace Cherry.Web
                 userManager.CreateAsync(user, "userBasic98");
             }
 
-            // ================ Schools ================
-            if(!schoolsDb.Database.EnsureCreated())
+            // ================ Config ================
+            if (app_configuration.Database.EnsureCreated())
             {
-                //ONLY FOR TEST
-                schoolsDb.Database.EnsureDeleted();
-                schoolsDb.Database.EnsureCreated();
+                app_configuration.Add(new School
+                {
+                    Name = "Wiśniowa",
+                    Tag = "wisniowa"
+                });
+                app_configuration.Add(new School
+                {
+                    Name = "ZSLIT",
+                    Tag = "zslit"
+                });
+                app_configuration.Add(new School
+                {
+                    Name = "StaffEDU",
+                    Tag = "staff"
+                });
+                app_configuration.SaveChanges();
                 //
             }
+
+            // ================ Schools ================
+            //if(!schoolsDb.Database.EnsureCreated())
+            //{
+            //    //ONLY FOR TEST
+            //    schoolsDb.Database.EnsureDeleted();
+            //    schoolsDb.Database.EnsureCreated();
+            //    //
+            //}
         }
     }
 }

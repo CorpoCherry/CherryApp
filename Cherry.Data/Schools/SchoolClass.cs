@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using Cherry.Data.Administration;
 
 namespace Cherry.Data.Schools
 {
-    public class Student
+    public class SchoolClass
     {
         [Column(TypeName = "char(36)")]
         [Key]
@@ -23,14 +24,18 @@ namespace Cherry.Data.Schools
         }
         private string _id { get; set; }
 
-        public string Name { get; set; }
-        public string LastName { get; set; }
+        [Column(TypeName = "char(36)")]
+        public string SchoolId { get; set; }
 
-        public string Login { get; set; }
-        public string PasswordHash { get; set; }
+        public string FullName { get; set; }
+        public string QuickName { get; set; }
 
-        public DateTime LastLogin { get; set; }
-        public DateTime LastFullLogin { get; set; }
-        public bool IsLocked { get; set; }
+        public List<Student> Students { get; set; }
+        public string OwnerID { get; set; }
+
+        public SchoolClass(School school)
+        {
+            SchoolId = school.ID;
+        }
     }
 }

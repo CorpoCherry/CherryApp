@@ -15,7 +15,25 @@ $mdc-theme-primary: #1565c0; // Blue 800
     margin-top: 20px;
 }
 
+#paddingleft {
+    padding-left: 2em;
+}
 html {
     width: 100%;
     height: 100%;
+}
+
+.slideable {
+    height: 0px;
+    //background: rgba(black, 0.035);
+    overflow: hidden;
+    transition: height 400ms ease;
+    -moz-transition: height 400ms ease;
+    -ms-transition: height 400ms ease;
+    -o-transition: height 400ms ease;
+    -webkit-transition: height 400ms ease;
+}
+
+#expanded {
+    height: 98px;
 }

@@ -436,5 +436,6 @@ __pycache__/
 #Keys
 appsettings.json
 appsettings.Development.json
+Keys.resx
 
 # End of https://www.gitignore.io/api/csharp,visualstudio

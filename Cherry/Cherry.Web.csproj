@@ -14,17 +14,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Keys.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>Keys.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    <EmbeddedResource Update="Properties\Keys.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Keys.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
@@ -93,7 +93,7 @@
   </PropertyGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-    <Exec Command="IF $(ConfigurationName) == &quot;Development&quot; (&#xD;&#xA;echo Starting Development Tasks...&#xD;&#xA;SET NODE_ENV=development&#xD;&#xA;webpack&#xD;&#xA;) ELSE (&#xD;&#xA;echo Starting Production Tasks...&#xD;&#xA;SET NODE_ENV=production&#xD;&#xA;webpack&#xD;&#xA;)" />
+    <Exec Command="IF $(ConfigurationName) == Development (&#xD;&#xA;echo Starting Development Tasks...&#xD;&#xA;SET NODE_ENV=development&#xD;&#xA;webpack&#xD;&#xA;) ELSE (&#xD;&#xA;echo Starting Production Tasks...&#xD;&#xA;SET NODE_ENV=production&#xD;&#xA;webpack&#xD;&#xA;)" />
   </Target>
 
 </Project>
