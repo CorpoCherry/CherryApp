@@ -61,7 +61,7 @@ namespace Cherry.Web.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu server=localhost;database=cherry_&lt;tag_here&gt;;uid=root;pwd=x7ppwe;pooling=true;.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu server=localhost;database=cherry_&lt;tag_here&gt;;uid=cherry;pwd=x7ppwe;pooling=true;.
         /// </summary>
         public static string ConnectionStringLocal {
             get {
@@ -70,7 +70,7 @@ namespace Cherry.Web.Properties {
         }
         
         /// <summary>
-        /// Wyszukuje zlokalizowany ciąg podobny do ciągu server=cherryapp.pl;database=cherry_&lt;tag_here&gt;;uid=root;pwd=x7ppwe;pooling=true;.
+        /// Wyszukuje zlokalizowany ciąg podobny do ciągu server=localhost;database=cherry_&lt;tag_here&gt;;uid=cherry;pwd=x7ppwe;pooling=true;.
         /// </summary>
         public static string ConnectionStringOnline {
             get {

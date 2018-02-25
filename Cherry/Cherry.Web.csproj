@@ -10,29 +10,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Properties\Keys.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Styles\Pages\Operators.scss" />
     <None Remove="Styles\Pages\Schools.scss" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Properties\Keys.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Styles\Pages\Operators.scss" />
     <Content Include="Styles\Pages\Schools.scss" />
     <Content Include="Styles\Pages\Index.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Properties\Keys.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Keys.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Keys.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Keys.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
