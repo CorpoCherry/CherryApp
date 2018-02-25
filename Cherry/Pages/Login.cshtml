@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="~/css/pages/login.css" asp-append-version="true"/>
 </environment>}
 <div class="mdc-theme--background mdc-elevation--z24 mdc-elevation-transition" id="logincard">
-    <div class="mdc-linear-progress mdc-linear-progress--indeterminate" role="progressbar" id="progressBar">
+    <div class="mdc-linear-progress mdc-linear-progress--closed" role="progressbar" id="progressBar">
         <div class="mdc-linear-progress__buffering-dots"></div>
         <div class="mdc-linear-progress__buffer"></div>
         <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
@@ -28,12 +28,14 @@
             <input type="text" id="my-text-field" class="mdc-text-field__input" required minlength=4 asp-for="Input.Login">
             <label class="mdc-text-field__label" for="my-text-field" aria-controls="my-text-field-label">Login</label>
             <div class="mdc-text-field__bottom-line"></div>
-        </div><br>
+        </div>
+        <br>
         <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
             <input type="password" id="pw" class="mdc-text-field__input" required minlength=8 asp-for="Input.Password">
             <label for="pw" class="mdc-text-field__label" aria-controls="my-text-field-label">Hasło:</label>
             <div class="mdc-text-field__bottom-line"></div>
-        </div><br>
+        </div>
+        <br>
         <div class="marginup margindown mdc-form-field">
             <div class="mdc-checkbox" data-mdc-auto-init="MDCCheckbox">
                 <input type="checkbox" id="remembercheckbox" class="mdc-checkbox__native-control" asp-for="Input.Remember" />
@@ -52,6 +54,12 @@
         </div>
         <br>
         <button type="submit" id="loginBtn" asp-page-handler="Login" asp-route-returnUrl="@Model.ReturnUrl" class="mdc-button mdc-button--raised margindown">ZALOGUJ</button>
+        @if (!String.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <p id="error_message">
+            @Model.ErrorMessage
+        </p>
+}
     </form>
 </div>
 @section Scripts {

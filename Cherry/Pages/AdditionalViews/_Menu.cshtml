@@ -1,31 +1,37 @@
 ﻿@model Cherry.Web.Pages.AdditionalViews._MenuModel
-<nav class="mdc-temporary-drawer__drawer">
-    <header class="mdc-temporary-drawer__header">
-        <div class="mdc-temporary-drawer__header-content mdc-theme--primary-bg mdc-theme--text-primary-on-primary">
-            Witaj, @Model.CurrentUser.FirstName
-        </div>
-    </header>
-    <nav class="mdc-temporary-drawer__content mdc-list-group">
-        <div class="mdc-list" id="icon-with-text-demo">
-            <a class="mdc-list-item mdc-temporary-drawer--selected" href="#" data-mdc-auto-init="MDCRipple">
-                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">home</i>Panel główny
-            </a>
-        </div>
-        <hr class="mdc-list-divider">
-        <div class="mdc-list">
-            <a class="mdc-list-item" href="#" id="slidebutton" data-mdc-auto-init="MDCRipple">
-                <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">settings</i>Zarządzanie
-            </a>
-            <div class="slideable">
-                <hr class="mdc-list-divider">
-                <a class="mdc-list-item" id="paddingleft" href="#" data-mdc-auto-init="MDCRipple">
-                    <i class="material-icons mdc-list-item__start-detail schoo" aria-hidden="true">school</i>Szkoły
-                </a>
-                <a class="mdc-list-item" id="paddingleft" href="#" data-mdc-auto-init="MDCRipple">
-                    <i class="material-icons mdc-list-item__start-detail" aria-hidden="true">supervisor_account</i>Operatorzy
+<aside class="mdc-drawer mdc-drawer--temporary">
+    <nav class="mdc-drawer__drawer">
+        <header class="mdc-drawer__header">
+            <div class="mdc-drawer__header-content mdc-theme--text-primary-on-primary mdc-theme--primary-bg">
+                Witaj, @Model.CurrentUser.FirstName
+
+            </div>
+            <form method="post" asp-page-handler="LogOut">
+                <input class="mdc-button mdc-theme--text-primary-on-primary" id="logout" data-mdc-auto-init="MDCRipple" type="submit" value="Wyloguj" />
+            </form>
+        </header>
+        <nav class="mdc-drawer__content mdc-list-group">
+            <div class="mdc-list">
+                <a class="mdc-list-item mdc-list-item--selected" href="@Url.Page("/Index")" data-mdc-auto-init="MDCRipple">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">home</i>Panel główny
                 </a>
             </div>
-        </div>
-        <hr class="mdc-list-divider">
+            <hr class="mdc-list-divider">
+            <div class="mdc-list">
+                <a class="mdc-list-item" href="#" id="slidebutton" data-mdc-auto-init="MDCRipple">
+                    <i class="material-icons mdc-list-item__graphic" aria-hidden="true">settings</i>Zarządzanie
+                </a>
+                <div class="slideable">
+                    <hr class="mdc-list-divider">
+                    <a class="mdc-list-item" id="paddingleft" href="@Url.Page("/Manage/Schools")" data-mdc-auto-init="MDCRipple">
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">school</i>Szkoły
+                    </a>
+                    <a class="mdc-list-item" id="paddingleft" href="@Url.Page("/Manage/Operators")" data-mdc-auto-init="MDCRipple">
+                        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">supervisor_account</i>Operatorzy
+                    </a>
+                </div>
+            </div>
+            <hr class="mdc-list-divider">
+        </nav>
     </nav>
-</nav>
+</aside>

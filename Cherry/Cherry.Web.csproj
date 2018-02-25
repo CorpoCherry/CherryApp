@@ -10,6 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Styles\Pages\Operators.scss" />
+    <None Remove="Styles\Pages\Schools.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Styles\Pages\Operators.scss" />
+    <Content Include="Styles\Pages\Schools.scss" />
     <Content Include="Styles\Pages\Index.scss" />
   </ItemGroup>
 
@@ -33,6 +40,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.1" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="6.10.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="WebEssentials.AspNetCore.PWA" Version="1.0.33" />
   </ItemGroup>
 

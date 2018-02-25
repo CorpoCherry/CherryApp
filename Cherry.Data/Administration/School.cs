@@ -28,7 +28,14 @@ namespace Cherry.Data.Administration
         }
         private string _id { get; set; }
 
-        public string Name { get; set; }
+        public string OfficialName { get; set; }
+        public string PseudoName { get; set; }
+        public string NamedBy { get; set; }
+
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string Adrress { get; set; }
+
         public string Tag { get; set; }
     }
 }

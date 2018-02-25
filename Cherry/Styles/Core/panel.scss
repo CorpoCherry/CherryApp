@@ -1,0 +1,25 @@
+﻿.panel {
+    height: 100%;
+    width: 350px;
+    min-width: 350px;
+    border-right-width: 1px;
+    border-right-style: solid;
+    border-right-color: rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    position: relative;
+}
+.panel-inside {
+    overflow: auto;
+    height: calc(100% - 56px);
+    overflow-x: hidden;
+}
+
+.name {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.12);
+}

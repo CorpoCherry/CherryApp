@@ -1,0 +1,35 @@
+﻿@page
+@model OperatorsModel
+@{
+    ViewData["Title"] = "Szkoły";
+}
+@section Styles
+    {
+    <environment names="Production">
+        <link rel="stylesheet" href="~/css/pages/operators.min.css" asp-append-version="true" />
+    </environment>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/pages/operators.css" asp-append-version="true" />
+    </environment>
+}
+<div class="mdc-toolbar mdc-toolbar--fixed">
+    <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <button class="material-icons mdc-toolbar__menu-icon menu">menu</button>
+            <span class="mdc-toolbar__title catalog-title">Operatorzy</span>
+        </section>
+    </div>
+</div>
+@Html.Partial("../AdditionalViews/_Menu.cshtml", Model._MenuModel)
+<main class="main mdc-toolbar-fixed-adjust">
+</main>
+@section Scripts{
+    <environment names="Production">
+        <script src="~/js/pages/operators.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Development">
+        <script src="~/js/pages/operators.js" asp-append-version="true"></script>
+    </environment>
+}
+
+

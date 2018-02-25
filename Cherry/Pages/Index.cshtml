@@ -20,9 +20,7 @@
         </section>
     </div>
 </div>
-<aside class="mdc-temporary-drawer">
-    @Html.Partial("AdditionalViews/_Menu.cshtml", Model._MenuModel)
-</aside>
+@Html.Partial("AdditionalViews/_Menu.cshtml", Model._MenuModel)
 <main class="main mdc-toolbar-fixed-adjust">
     <h1 class="mdc-typography--display1">Aktualna data: @DateTime.Now.ToLongDateString()</h1>
     <p class="mdc-typography--body1">Więcej opcji w menu na górze...</p>

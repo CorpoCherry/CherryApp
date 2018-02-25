@@ -47,11 +47,11 @@ namespace Cherry.Web.Pages
 
         public IActionResult OnGet(string returnUrl)
         {
-            if (!string.IsNullOrEmpty(ErrorMessage))
+            if(User.Identity.IsAuthenticated)
             {
-                ModelState.AddModelError(string.Empty, ErrorMessage);
+                return RedirectToPage("/");
             }
-
+            ErrorMessage = "";
             ReturnUrl = returnUrl;
             return Page();
         }
@@ -74,8 +74,11 @@ namespace Cherry.Web.Pages
                         return RedirectToPage("./Index");
                     }
                 }
+                else
+                {
+                    ErrorMessage = "Podano z³e dane logowania...";
+                }
             }
-            ModelState.AddModelError("", "Invalid login attempt");
             return Page();
         }
     }

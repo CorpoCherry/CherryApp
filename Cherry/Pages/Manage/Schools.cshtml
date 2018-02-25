@@ -1,0 +1,81 @@
+﻿@page
+@model SchoolsModel
+@{
+    ViewData["Title"] = "Szkoły";
+}
+@section Styles
+    {
+    <environment names="Production">
+        <link rel="stylesheet" href="~/css/pages/schools.min.css" asp-append-version="true" />
+    </environment>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/pages/schools.css" asp-append-version="true" />
+    </environment>
+}
+@Html.AntiForgeryToken()
+
+<div class="mdc-toolbar mdc-toolbar--fixed">
+    <div class="mdc-toolbar__row">
+        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
+            <button class="material-icons mdc-toolbar__menu-icon menu">menu</button>
+            <span class="mdc-toolbar__title catalog-title">Szkoły</span>
+        </section>
+    </div>
+</div>
+@Html.Partial("../AdditionalViews/_Menu.cshtml", Model._MenuModel)
+<main class="main mdc-toolbar-fixed-adjust">
+    <div class="panel">
+        <div class="mdc-text-field mdc-text-field--fullwidth" id="search" data-mdc-auto-init='MDCTextField'>
+            <div id="search_label">Wyszukiwanie</div>
+            <input type="text" id="search_field" class="mdc-text-field__input">
+            <div class="mdc-text-field__bottom-line"></div>
+        </div>
+        <div class="loading_panel">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -10" result="goo" />
+                        <feBlend in="SourceGraphic" in2="goo" operator="atop" />
+                    </filter>
+                </defs>
+            </svg>
+            <div class="loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="panel-inside">
+            <div class="mdc-list" id="schoolList">
+            </div>
+        </div>
+        <button class="mdc-fab material-icons app-fab--absolute" aria-label="Favorite" id="addnew" data-mdc-auto-init="MDCRipple">
+            <span class="mdc-fab__icon">
+                add
+            </span>
+        </button>
+    </div>
+    <div class="noselection">
+        Wybierz szkołę z menu po lewej stronie...
+    </div>
+    <div class="selection">
+
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+        var actionUrl = '@Url.Action("SearchByName", "Manage", new { name="w" })';
+</script>
+@section Scripts{
+    <environment names="Production">
+        <script src="~/js/pages/schools.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Development">
+        <script src="~/js/pages/schools.js" asp-append-version="true"></script>
+    </environment>
+}

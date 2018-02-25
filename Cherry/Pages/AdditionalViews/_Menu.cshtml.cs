@@ -18,7 +18,7 @@ namespace Cherry.Web.Pages.AdditionalViews
 
         public _MenuModel(User usmg)
         {
-            CurrentUser = usmg;       
+            CurrentUser = usmg;
         }
     }
 }

@@ -156,20 +156,106 @@ namespace Cherry.Web
             {
                 app_configuration.Add(new School
                 {
-                    Name = "Wiśniowa",
-                    Tag = "wisniowa"
+                    OfficialName = "Zespół Szkół Podstawowych nr 2",
+                    PseudoName = "ZSP2",
+                    NamedBy = "Kornel Makuszyński",
+                    City = "Legionowo",
+                    Country = "PL",
+                    Adrress = "Jagiellońska 67",
+                    Tag = "zsp2legionowo"
                 });
                 app_configuration.Add(new School
                 {
-                    Name = "ZSLIT",
-                    Tag = "zslit"
+                    OfficialName = "Szkoła Podstawowa nr 314",
+                    PseudoName = "SP314",
+                    NamedBy = "Przyjaciół Ziemi",
+                    City = "Warszawa",
+                    Country = "PL",
+                    Adrress = "Porajów 3",
+                    Tag = "sp314warszawa"
                 });
                 app_configuration.Add(new School
                 {
-                    Name = "StaffEDU",
-                    Tag = "staff"
+                    OfficialName = "Zespół Szkół Samochodowych",
+                    PseudoName = "ZSS",
+                    NamedBy = "Sportowców Ziemii Szczecińskiej",
+                    City = "Szczecin",
+                    Country = "PL",
+                    Adrress = "Małopolska 22",
+                    Tag = "zssszczecin"
+                });
+                app_configuration.Add(new School
+                {
+                    OfficialName = "Zespół Szkół Specjalnych nr 2",
+                    PseudoName = "ZSS2",
+                    NamedBy = null,
+                    City = "Gdańsk",
+                    Country = "PL",
+                    Adrress = "Witastwosza 23",
+                    Tag = "zss2gdańsk"
+                });
+                app_configuration.Add(new School
+                {
+                    OfficialName = "Sopocka Szkoła Montessori",
+                    PseudoName = "SSP",
+                    NamedBy = null,
+                    City = "Sopot",
+                    Country = "PL",
+                    Adrress = "Tatrzańska 19",
+                    Tag = "sspsopot"
+                });
+                app_configuration.Add(new School
+                {
+                    OfficialName = "Szkoła Podstawowa nr 84",
+                    PseudoName = "SP",
+                    NamedBy = "Ruch Oporu Pokoju",
+                    City = "wrocław",
+                    Country = "PL",
+                    Adrress = "Górnickiego 20",
+                    Tag = "spwroclaw"
+                });
+                app_configuration.Add(new School
+                {
+                    OfficialName = "XII Liceum Ogólnokształcące",
+                    PseudoName = "XIILO",
+                    NamedBy = "M. Skłodwska-Curie",
+                    City = "Poznań",
+                    Country = "PL",
+                    Adrress = "Kutrzeby 8",
+                    Tag = "XIIlieceumogolnoksztalcace"
+                });
+                app_configuration.Add(new School
+                {
+                    OfficialName = "Wyższa Szkoła Techniczna",
+                    PseudoName = "WST",
+                    NamedBy = null,
+                    City = "Katowice",
+                    Country = "PL",
+                    Adrress = "Rolna 43",
+                    Tag = "wyzszaszkolatechniczna"
+                });
+                app_configuration.Add(new School
+                {
+                    OfficialName = "Śląski Uniwersytet Medyczny",
+                    PseudoName = "ŚUM",
+                    NamedBy = null,
+                    City = "Katowice",
+                    Country = "PL",
+                    Adrress = "Poniatowskiego 15",
+                    Tag = "slaskiuniwerekmedyczny"
+                });
+                app_configuration.Add(new School
+                {
+                    OfficialName = "Szkoła Podstawowa nr 4",
+                    PseudoName = "SP",
+                    NamedBy = "T. Kościuszki. Filla",
+                    City = "Katowice",
+                    Country = "PL",
+                    Adrress = "Józefowska 52/54",
+                    Tag = "szkolapodtawowakatowice"
                 });
                 app_configuration.SaveChanges();
+
                 //
             }
 

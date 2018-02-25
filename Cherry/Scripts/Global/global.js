@@ -11,12 +11,3 @@ if (isServiceWorkersSupport) {
         console.log("No it didn't. This happened: ", err)
     });
 }
-
-document.getElementById('slidebutton').addEventListener('click', function () {
-    var body = document.getElementsByClassName('slideable')[0];
-    if (body.id == 'expanded') {
-        body.id = '';
-    } else {
-        body.id = 'expanded';
-    };
-});

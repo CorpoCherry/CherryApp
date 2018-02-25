@@ -9,7 +9,6 @@ const {  join, dirname, resolve } = require('path');
 const extractSCSS = new ExtractTextPlugin('[name]');
 const rimraf = require('rimraf');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const resizer = require('node-image-resizer');
 const Production = (process.env.NODE_ENV === 'production');
 
 ClearRoot();
