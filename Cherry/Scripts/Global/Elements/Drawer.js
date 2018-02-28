@@ -6,11 +6,11 @@ export function Drawer() {
 
     document.getElementById('slidebutton').addEventListener('click', function () {
         var body = document.getElementsByClassName('slideable')[0];
-        if (body.id == 'expanded') {
+        if (body.id === 'expanded') {
             body.id = '';
         } else {
             body.id = 'expanded';
-        };
+        }
     });
 
     return drawer;

@@ -49,7 +49,7 @@ namespace Cherry.Web.Pages
         {
             if(User.Identity.IsAuthenticated)
             {
-                return RedirectToPage("/");
+                return RedirectToPage("Index");
             }
             ErrorMessage = "";
             ReturnUrl = returnUrl;

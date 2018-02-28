@@ -17,37 +17,16 @@ namespace Cherry.Web.Pages.Manage
     public class SchoolsModel : PageModel
     {
         private readonly IConfigurationContextDb configuration;
-        private UserManager<User> UserManager { get; set; }
-        public SignInManager<User> SignManager { get; }
-        public AdditionalViews._MenuModel _MenuModel { get; set; }
-        public User CurrentUser { get; set; }
 
         public DbSet<School> Schools { get; set; }
 
         private List<ReturnedSchool> SchoolList;
 
-        public SchoolsModel(IConfigurationContextDb _configuration, UserManager<User> _usmg, SignInManager<User> _signmanager)
+        public SchoolsModel(IConfigurationContextDb _configuration)
         {
             SchoolList = new List<ReturnedSchool>();
             configuration = _configuration;
             Schools = configuration.Schools;
-            UserManager = _usmg;
-            SignManager = _signmanager;
-        }
-
-        public async Task OnGet()
-        {
-            if (ModelState.IsValid)
-            {
-                CurrentUser = await UserManager.GetUserAsync(User);
-                _MenuModel = new AdditionalViews._MenuModel(CurrentUser);
-            }
-        }
-
-        public async Task<IActionResult> OnPostLogOutAsync()
-        {
-            await SignManager.SignOutAsync();
-            return RedirectToPage("/Login");
         }
 
         public Task<JsonResult> OnPostGetByName(string name)
@@ -122,7 +101,6 @@ namespace Cherry.Web.Pages.Manage
 
             return Task.FromResult(new JsonResult(SchoolList));
         }
-
         public Task<JsonResult> OnPostGetPage(string id)
         {
             DbSet<School> Schools = configuration.Schools;
@@ -141,7 +119,6 @@ namespace Cherry.Web.Pages.Manage
             }
             return Task.FromResult(new JsonResult(SchoolList));
         }
-
         public Task<JsonResult> OnPostGetSchool(string tag)
         {
             School ReturnedData = null;

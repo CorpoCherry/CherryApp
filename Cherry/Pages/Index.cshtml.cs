@@ -12,29 +12,9 @@ namespace Cherry.Web.Pages
 {
     public class IndexModel : PageModel
     {
-        public AdditionalViews._MenuModel _MenuModel { get; set; }
-        private UserManager<User> UserManager { get; set; }
-        private readonly SignInManager<User> SignManager;
-        public User CurrentUser { get; set; }
+        public IndexModel()
+        {
 
-        public IndexModel(UserManager<User> usmg, SignInManager<User> _signManager)
-        {
-            UserManager = usmg;
-            SignManager = _signManager;
-        }
-
-        public async Task OnGet()
-        {
-            if (ModelState.IsValid)
-            {
-                CurrentUser = await UserManager.GetUserAsync(User);
-                _MenuModel = new AdditionalViews._MenuModel(CurrentUser);
-            }
-        }
-        public async Task<IActionResult> OnPostLogOutAsync()
-        {
-            await SignManager.SignOutAsync();
-            return RedirectToPage("/Login");
         }
     }
 }

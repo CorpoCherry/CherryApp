@@ -2,6 +2,7 @@
 @model SchoolsModel
 @{
     ViewData["Title"] = "Szkoły";
+    ViewData["TitleBar"] = "Szkoły";
 }
 @section Styles
     {
@@ -13,16 +14,6 @@
     </environment>
 }
 @Html.AntiForgeryToken()
-
-<div class="mdc-toolbar mdc-toolbar--fixed">
-    <div class="mdc-toolbar__row">
-        <section class="mdc-toolbar__section mdc-toolbar__section--align-start">
-            <button class="material-icons mdc-toolbar__menu-icon menu">menu</button>
-            <span class="mdc-toolbar__title catalog-title">Szkoły</span>
-        </section>
-    </div>
-</div>
-@Html.Partial("../AdditionalViews/_Menu.cshtml", Model._MenuModel)
 <main class="main mdc-toolbar-fixed-adjust">
     <div class="panel">
         <div class="mdc-text-field mdc-text-field--fullwidth" id="search" data-mdc-auto-init='MDCTextField'>
@@ -58,19 +49,16 @@
             </span>
         </button>
     </div>
-    <div class="noselection">
+    <div id="noselection">
         Wybierz szkołę z menu po lewej stronie...
     </div>
-    <div class="selection">
-
+    <div id="selection">
+        
     </div>
 </main>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-<script type="text/javascript">
-        var actionUrl = '@Url.Action("SearchByName", "Manage", new { name="w" })';
-</script>
 @section Scripts{
     <environment names="Production">
         <script src="~/js/pages/schools.min.js" asp-append-version="true"></script>

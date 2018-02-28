@@ -100,9 +100,9 @@ function loadSchool(searchable_tag) {
         },
         success: function (result) {
 
-            $(".noselection").css('visibility', 'collapse');
-            $(".selection").css('visibility', 'visible');
-            $(".selection").html(JSON.stringify(result).replace(/,/g, '<br>'));
+            $("#noselection").css('display', 'none');
+            $("#selection").css('display', 'flex');
+            $("#selection").html(JSON.stringify(result).replace(/,/g, '<br>'));
             school = result;
         }
     });

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cherry.Data.Administration;
 using Cherry.Web.DataContexts;
+using Cherry.Web.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,11 +36,15 @@ namespace Cherry.Web
         {
             // ================ DB Contexts ================
             services.AddDbContext<IdentityDb>
-            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Identity" + Parameters.DBtype)));
+            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Identity" + Globals.DatabaseParamaters.DBtype)));
             services.AddDbContext<ConfigurationContextDb>
-            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Configuration" + Parameters.DBtype)));
+            (options => options.UseMySQL(Configuration.GetConnectionString("MySQL_Configuration" + Globals.DatabaseParamaters.DBtype)));
             services.AddDbContext<SchoolDb>();
             services.AddScoped<IConfigurationContextDb>(provider => provider.GetService<ConfigurationContextDb>());
+
+            // ================ Other Services ================
+
+            services.AddScoped<IUserProfileLoader, UserServices>();
 
             // ================ Identity ================
             services.AddIdentity<User, IdentityRole>()

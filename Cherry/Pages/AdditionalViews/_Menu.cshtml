@@ -1,12 +1,16 @@
 ﻿@model Cherry.Web.Pages.AdditionalViews._MenuModel
+@using Cherry.Web.Interfaces
+@inject IUserProfileLoader UserServices
+@{
+    Model.CurrentUser = await UserServices.GetCurrentUser(User);
+}
 <aside class="mdc-drawer mdc-drawer--temporary">
     <nav class="mdc-drawer__drawer">
         <header class="mdc-drawer__header">
             <div class="mdc-drawer__header-content mdc-theme--text-primary-on-primary mdc-theme--primary-bg">
                 Witaj, @Model.CurrentUser.FirstName
-
             </div>
-            <form method="post" asp-page-handler="LogOut">
+            <form asp-controller="Action" asp-action="LogOut" method="post">
                 <input class="mdc-button mdc-theme--text-primary-on-primary" id="logout" data-mdc-auto-init="MDCRipple" type="submit" value="Wyloguj" />
             </form>
         </header>

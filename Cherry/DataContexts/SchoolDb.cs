@@ -29,7 +29,7 @@ namespace Cherry.Web.DataContexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             
-            string build = Parameters.DBtypebool ? Properties.Keys.ConnectionStringLocal.Replace("<tag_here>", tenant.Tag) : Properties.Keys.ConnectionStringOnline.Replace("<tag_here>", tenant.Tag);
+            string build = Globals.DatabaseParamaters.DBtypebool ? Properties.Keys.ConnectionStringLocal.Replace("<tag_here>", tenant.Tag) : Properties.Keys.ConnectionStringOnline.Replace("<tag_here>", tenant.Tag);
             optionsBuilder.UseMySQL(build);
             base.OnConfiguring(optionsBuilder);
         }

@@ -10,7 +10,7 @@
 @import '@material/fab/mdc-fab';
 @import '../Core/mdc-drawer-ios-fix.scss';
 @import '../Core/panel.scss';
-@import '../Nowy folder/Loadere.scss';
+@import '../Components/Loader.scss';
 
 .app-fab--absolute {
     right: 1.5rem;
@@ -26,7 +26,7 @@
     display: flex;
 }
 //TODO: Change selections to ID's
-.noselection {
+#noselection {
     font-size: 1.15em;
     padding: 10px;
     height: 100%;
@@ -35,15 +35,14 @@
     justify-content: center;
     align-items: center;
 }
-.selection {
+#selection {
     font-size: 1.15em;
     padding: 10px;
     height: 100%;
     width: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
-    visibility: collapse;
+    display: none;
 }
 body {
     height: calc(100% - 64px);
