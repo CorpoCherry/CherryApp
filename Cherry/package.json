@@ -1,7 +1,9 @@
 {
   "name": "cherryapp-panel",
   "version": "1.0.0",
-  "devDependencies": {},
+  "devDependencies": {
+    "jquery": "^3.3.1"
+  },
   "dependencies": {
     "@material/animation": "^0.25.0",
     "@material/auto-init": "^0.30.0",

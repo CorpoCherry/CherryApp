@@ -17,4 +17,10 @@
 @RenderBody()
 @section Scripts{
     @await RenderSectionAsync("Scripts", required: false)
+    <environment names="Production">
+        <script src="~/js/global/jquery.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Development">
+        <script src="~/js/global/jquery.js" asp-append-version="true"></script>
+    </environment>
 }

@@ -23,19 +23,15 @@ html {
     height: 100%;
 }
 
-.slideable {
+.slidearea {
     height: 0px;
     //background: rgba(black, 0.035);
     overflow: hidden;
-    transition: height 400ms ease;
-    -moz-transition: height 400ms ease;
-    -ms-transition: height 400ms ease;
-    -o-transition: height 400ms ease;
-    -webkit-transition: height 400ms ease;
-}
-
-#expanded {
-    height: 98px;
+    transition: height 300ms ease;
+    -moz-transition: height 300ms ease;
+    -ms-transition: height 300ms ease;
+    -o-transition: height 300ms ease;
+    -webkit-transition: height 300ms ease;
 }
 
 #logout{
