@@ -82,7 +82,6 @@ function getAll() {
         return memo;
     }, {});
 }
-
 function getFontsLoader() {
     return Production ? 'file-loader?name=/fonts/[name].[hash].[ext]' : 'file-loader?name=/fonts/[name].[ext]';
 }
@@ -150,6 +149,9 @@ var config =
         target: "web",
         plugins:
         [
+            new webpack.ProvidePlugin({
+            $: "jquery"
+            }),
             extractSCSS,
             new CopyWebpackPlugin(
                 [
@@ -162,18 +164,20 @@ var config =
                     {
                         from: './Other/Images/Touch',
                         to: 'img/touch'
-                    },
-
+                    }
                 ])
-        ]
+        ],
+        optimization: {
+            minimize: false
+        }
     };
 
 if (Production) {
     console.log("Production MODE");
     config.plugins.push(
-            new webpack.optimize.ModuleConcatenationPlugin(),
-            new UglifyJsPlugin()
+            new webpack.optimize.ModuleConcatenationPlugin()
     );
+    config.optimization.minimize = true;
 }
 else {
     console.log("Development MODE");

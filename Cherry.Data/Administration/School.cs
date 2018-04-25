@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using Cherry.Data.Globals;
 using Cherry.Data.Schools;
 
 namespace Cherry.Data.Administration
@@ -32,10 +33,11 @@ namespace Cherry.Data.Administration
         public string PseudoName { get; set; }
         public string NamedBy { get; set; }
 
-        public string City { get; set; }
+        public City City { get; set; }
         public string Country { get; set; }
         public string Adrress { get; set; }
 
+        [MaxLength(255)]
         public string Tag { get; set; }
     }
 }

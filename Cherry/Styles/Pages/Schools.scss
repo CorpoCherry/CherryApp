@@ -1,96 +1,9 @@
 ﻿@import '../Core/main';
-@import '@material/textfield/mdc-text-field';
 @import '@material/form-field/mdc-form-field';
 @import '@material/linear-progress/mdc-linear-progress';
 @import '@material/toolbar/mdc-toolbar';
 @import '@material/checkbox/mdc-checkbox';
 @import '@material/drawer/mdc-drawer';
-@import '@material/list/mdc-list';
 @import '@material/ripple/mdc-ripple';
-@import '@material/fab/mdc-fab';
 @import '../Core/mdc-drawer-ios-fix.scss';
-@import '../Core/panel.scss';
-@import '../Components/Loader.scss';
-
-.app-fab--absolute {
-    right: 1.5rem;
-    bottom: 1.5rem;
-    position: absolute;
-}
-
-.main
-{
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    display: flex;
-}
-//TODO: Change selections to ID's
-#noselection {
-    font-size: 1.15em;
-    padding: 10px;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#selection {
-    font-size: 1.15em;
-    padding: 10px;
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    display: none;
-}
-body {
-    height: calc(100% - 64px);
-    margin: 0 0 0 0;
-}
-
-@media (max-width:600px) {
-    body {
-        height: calc(100% - 56px);
-    }
-}
-
-@media (max-height: 599px) and (max-width: 959px) {
-    body {
-        height: calc(100% - 48px);
-    }
-}
-
-.mdc-list{
-    padding: 0;
-}
-#panel-item {
-    padding: 0 0 0 12px;
-    left: 0;
-}
-
-#search
-{
-    padding: 0 10px 0 10px;
-}
-#search_label{
-    z-index: -5;
-    display: flex;
-    justify-content: center;
-    line-height: 55px;
-    position: fixed;
-    width: 330px;
-}
-
-.loading_panel {
-    height: calc(100% - 48px);
-    width: 100%;
-}
-.loader {
-    transform: translateY(-10px);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+@import '../Components/FullPageSearch.scss';

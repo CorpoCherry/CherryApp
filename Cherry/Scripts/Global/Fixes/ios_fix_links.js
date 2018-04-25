@@ -1,12 +1,9 @@
-﻿var eventHandler = function (event) {
-    // Only run for iOS full screen apps
-    if (('standalone' in window.navigator) && window.navigator.standalone) {
-        // Only run if link is an anchor and points to the current page
-        if (event.target.tagName.toLowerCase() !== 'a' || event.target.hostname !== window.location.hostname || event.target.pathname !== window.location.pathname || !/#/.test(event.target.href)) return;
+﻿// Ensure iOS Safari fullscreen links don't open in external Safari.
 
-        // Open link in same tab
-        event.preventDefault();
-        window.location = event.target.href;
+$(document).ready(function () {
+    if (/(iPhone|iPod|iPad)/i.test(navigator.userAgent)) {
+        $('a').each(function () {
+            $(this).attr('href', 'javascript:window.location = "' + $(this).attr('href') + '"');
+        });
     }
-}
-window.addEventListener('click', eventHandler, false);
+});

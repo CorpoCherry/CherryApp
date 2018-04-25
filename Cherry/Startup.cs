@@ -4,6 +4,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Cherry.Data.Administration;
+using Cherry.Data.Globals;
 using Cherry.Web.DataContexts;
 using Cherry.Web.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -164,7 +165,7 @@ namespace Cherry.Web
                     OfficialName = "Zespół Szkół Podstawowych nr 2",
                     PseudoName = "ZSP2",
                     NamedBy = "Kornel Makuszyński",
-                    City = "Legionowo",
+                    City = new City { Name = "Legionowo" },
                     Country = "PL",
                     Adrress = "Jagiellońska 67",
                     Tag = "zsp2legionowo"
@@ -174,7 +175,7 @@ namespace Cherry.Web
                     OfficialName = "Szkoła Podstawowa nr 314",
                     PseudoName = "SP314",
                     NamedBy = "Przyjaciół Ziemi",
-                    City = "Warszawa",
+                    City = new City { Name = "Warszawa" },
                     Country = "PL",
                     Adrress = "Porajów 3",
                     Tag = "sp314warszawa"
@@ -184,7 +185,7 @@ namespace Cherry.Web
                     OfficialName = "Zespół Szkół Samochodowych",
                     PseudoName = "ZSS",
                     NamedBy = "Sportowców Ziemii Szczecińskiej",
-                    City = "Szczecin",
+                    City = new City { Name = "Szczecin" },
                     Country = "PL",
                     Adrress = "Małopolska 22",
                     Tag = "zssszczecin"
@@ -194,7 +195,7 @@ namespace Cherry.Web
                     OfficialName = "Zespół Szkół Specjalnych nr 2",
                     PseudoName = "ZSS2",
                     NamedBy = null,
-                    City = "Gdańsk",
+                    City = new City { Name = "Gdańsk" },
                     Country = "PL",
                     Adrress = "Witastwosza 23",
                     Tag = "zss2gdańsk"
@@ -204,7 +205,7 @@ namespace Cherry.Web
                     OfficialName = "Sopocka Szkoła Montessori",
                     PseudoName = "SSP",
                     NamedBy = null,
-                    City = "Sopot",
+                    City = new City { Name = "Sopot" },
                     Country = "PL",
                     Adrress = "Tatrzańska 19",
                     Tag = "sspsopot"
@@ -214,7 +215,7 @@ namespace Cherry.Web
                     OfficialName = "Szkoła Podstawowa nr 84",
                     PseudoName = "SP",
                     NamedBy = "Ruch Oporu Pokoju",
-                    City = "wrocław",
+                    City = new City { Name = "Wrocław" },
                     Country = "PL",
                     Adrress = "Górnickiego 20",
                     Tag = "spwroclaw"
@@ -224,7 +225,7 @@ namespace Cherry.Web
                     OfficialName = "XII Liceum Ogólnokształcące",
                     PseudoName = "XIILO",
                     NamedBy = "M. Skłodwska-Curie",
-                    City = "Poznań",
+                    City = new City { Name = "Poznań" },
                     Country = "PL",
                     Adrress = "Kutrzeby 8",
                     Tag = "XIIlieceumogolnoksztalcace"
@@ -234,7 +235,7 @@ namespace Cherry.Web
                     OfficialName = "Wyższa Szkoła Techniczna",
                     PseudoName = "WST",
                     NamedBy = null,
-                    City = "Katowice",
+                    City = new City { Name = "Katowice" },
                     Country = "PL",
                     Adrress = "Rolna 43",
                     Tag = "wyzszaszkolatechniczna"
@@ -244,7 +245,7 @@ namespace Cherry.Web
                     OfficialName = "Śląski Uniwersytet Medyczny",
                     PseudoName = "ŚUM",
                     NamedBy = null,
-                    City = "Katowice",
+                    City = new City { Name = "Katowice" },
                     Country = "PL",
                     Adrress = "Poniatowskiego 15",
                     Tag = "slaskiuniwerekmedyczny"
@@ -254,24 +255,13 @@ namespace Cherry.Web
                     OfficialName = "Szkoła Podstawowa nr 4",
                     PseudoName = "SP",
                     NamedBy = "T. Kościuszki. Filla",
-                    City = "Katowice",
+                    City = new City { Name = "Katowice" },
                     Country = "PL",
                     Adrress = "Józefowska 52/54",
                     Tag = "szkolapodtawowakatowice"
                 });
                 app_configuration.SaveChanges();
-
-                //
             }
-
-            // ================ Schools ================
-            //if(!schoolsDb.Database.EnsureCreated())
-            //{
-            //    //ONLY FOR TEST
-            //    schoolsDb.Database.EnsureDeleted();
-            //    schoolsDb.Database.EnsureCreated();
-            //    //
-            //}
         }
     }
 }

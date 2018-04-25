@@ -8,6 +8,6 @@ if (isServiceWorkersSupport) {
     navigator.serviceWorker.register(PATH).then(function () {
         console.log("Yes it did.");
     }).catch(function (err) {
-        console.log("No it didn't. This happened: ", err)
+        console.log("No it didn't. This happened: ", err);
     });
 }

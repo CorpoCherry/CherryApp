@@ -14,46 +14,35 @@
     </environment>
 }
 @Html.AntiForgeryToken()
-<main class="main mdc-toolbar-fixed-adjust">
-    <div class="panel">
-        <div class="mdc-text-field mdc-text-field--fullwidth" id="search" data-mdc-auto-init='MDCTextField'>
-            <div id="search_label">Wyszukiwanie</div>
-            <input type="text" id="search_field" class="mdc-text-field__input">
-            <div class="mdc-text-field__bottom-line"></div>
-        </div>
-        <div class="loading_panel">
-            <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                <defs>
-                    <filter id="goo">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -10" result="goo" />
-                        <feBlend in="SourceGraphic" in2="goo" operator="atop" />
-                    </filter>
-                </defs>
-            </svg>
-            <div class="loader">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+<main>
+    <div id="search">
+        <div id="search_side">
+            <div class="mdc-text-field" id="search_textfield">
+                <div id="search_textfield_label">Wyszukiwanie</div>
+                <input type="text" id="search_textfield_inner" class="mdc-text-field__input">
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div id="search_pagesbuttons">
+                <div id="search_pagesbuttons_bg"></div>
+                <button class="mdc-button" id="search_pagesbuttons_back">
+                    <
+                </button>
+                <div id="search_pagesbuttons_number">1/1</div>
+                <button class="mdc-button" id="search_pagesbuttons_next">
+                    >
+                </button>
+            </div>
+            <div id="search_loading">
+                <div id="search_loading_main"></div>
+            </div>
+            <div id="search_panel">
+                <div class="mdc-list" id="search_panel_inner">
+                </div>
             </div>
         </div>
-        <div class="panel-inside">
-            <div class="mdc-list" id="schoolList">
-            </div>
+        <div id="search_selection">
+            Wybierz szkołę z menu po lewej stronie...
         </div>
-        <button class="mdc-fab material-icons app-fab--absolute" aria-label="Favorite" id="addnew" data-mdc-auto-init="MDCRipple">
-            <span class="mdc-fab__icon">
-                add
-            </span>
-        </button>
-    </div>
-    <div id="noselection">
-        Wybierz szkołę z menu po lewej stronie...
-    </div>
-    <div id="selection">
-        
     </div>
 </main>
 @section Scripts{
