@@ -41,6 +41,7 @@ export function FullPageSearch(token) {
     pagesbuttons = $('#search_pagesbuttons');
 
     searchfield_inner.on("keyup", function () {
+        DisablePagesCounter();
         showLoader();
         clearTimeout(timer);
         timer = setTimeout(function () {
@@ -59,6 +60,7 @@ export function FullPageSearch(token) {
         var searchfield_label = $(searchfield.children("#search_textfield_label"));
         if (searchfield_inner.val() === "") {
             searchfield_label.show(100);
+            getSearchData(calculateSpace, 0, "", verification);
         }
         else {
             searchfield_label.hide(100);
@@ -102,8 +104,29 @@ export function getSearchData(count, page, value, token) {
     });
 }
 
+function showInfo(info) {
+    var info_search = $("#search_info");
+    info_search.html(info);
+    info_search.css('display', 'flex');
+    info_search.stop().animate(
+        {
+            opacity: '1'
+        }, 50, 'swing');
+}
+function hideInfo() {
+    $("#search_info").stop().animate(
+        {
+            opacity: '0'
+        }, 50, 'swing');
+    $("#search_info").css('display', 'none');
+
+}
+
 function displayData(response) {
     if (response !== null) {
+        if (response.schools.length == 0) {
+            showInfo("Brak wyników...<br/>Spróbuj użyć innego wyrażenia");    
+        }
         for (var i = 0; i < response.schools.length; i++) {
             addToList(response.schools[i]);
         }
@@ -111,8 +134,8 @@ function displayData(response) {
         displayPagesCounter();
     }
     else {
-        //TODO: Infrom User about no connection
-        console.warn("No Respones at:" + Date.now());
+        showInfo("Błąd połączenia...<br/>Spróbuj ponownie za jakiś czas");
+        console.warn("No Respone at:" + Date.now());
     }
     hideLoader();
 
@@ -172,17 +195,24 @@ function DisablePagesCounter() {
     ShowHideNextBackButtons();
     currentpage = 0;
     availablepages = 0;
-    $(pagesbuttons.hide());
+    $(pagesbuttons.stop().animate(
+        {
+            marginBottom: '-70px'
+        }, 50, 'swing'));
 }
 
 function EnablePagesCounter() {
-    $(pagesbuttons.show());
+    $(pagesbuttons.stop().animate(
+        {
+            marginBottom: '0px'
+        }, 50, 'swing'));
 }
 function CalculatePages(itemscount) {
     availablepages = Math.floor(itemscount / calculateSpace());
 }
 
 function showLoader() {
+    hideInfo();
     $("#search_loading").show(150);
     $("#search_panel").hide(150);
 }
