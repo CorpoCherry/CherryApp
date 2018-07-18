@@ -46,6 +46,13 @@ namespace Cherry.Web.Pages.Manage
 
             return Task.FromResult(new JsonResult(new { schools = temp_list, allin = search.MaximumInQueue }));
         }
+
+        public Task<JsonResult> OnPostGetItem(string tag)
+        {
+            School item = configuration.GetSchool(tag);
+            item.ID = "secret";
+            return Task.FromResult(new JsonResult(item));
+        }
     }
 
 }

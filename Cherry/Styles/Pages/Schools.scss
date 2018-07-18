@@ -7,3 +7,13 @@
 @import '@material/ripple/mdc-ripple';
 @import '../Core/mdc-drawer-ios-fix.scss';
 @import '../Components/FullPageSearch.scss';
+
+#tagfield
+{
+    position:relative;
+}
+
+.mdc-dialog__surface{
+    width: 275px;
+    min-width: 0px;
+}

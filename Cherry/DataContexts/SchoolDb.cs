@@ -33,6 +33,7 @@ namespace Cherry.Web.DataContexts
             optionsBuilder.UseMySQL(build);
             base.OnConfiguring(optionsBuilder);
         }
+        
 
         public DbSet<SchoolClass> Class { get; set; }
     }

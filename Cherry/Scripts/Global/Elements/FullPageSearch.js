@@ -1,4 +1,5 @@
-﻿var searchlist = [];
+﻿var sensorx = require('../../../node_modules/resize-sensor/src/ResizeSensor');
+var searchlist = [];
 var searchfield;
 var searchfield_inner;
 var timer;
@@ -7,10 +8,16 @@ var verification;
 var pagesbuttons;
 var currentpage = 0;
 var availablepages = 0;
+var MDCRipple;
+var OnSelection;
+
+//TODO: Disable selection same item again
 
 function addToList(item) {
-    var node = $("<a class='mdc-list-item'>" + item.officialName + "</a>");
+    var node = $("<a class='mdc-list-item search_item'>" + item.officialName + "</a>");
+    node.click(function () { getItem(item.tag); });
     node.appendTo($("#search_panel_inner"));
+    item.ripple = new MDCRipple(node[0]);
     searchlist[searchlist.length] = {
         item: item,
         node: node
@@ -28,14 +35,16 @@ export function removeFromList(item) {
 }
 export function clearList() {
     for (var i = 0; i < searchlist.length; i++) {
+        searchlist[i].item.ripple.destroy();
         searchlist[i].node.remove();
     }
     searchlist = [];
     
 }
-
-export function FullPageSearch(token) {
+export function FullPageSearch(token, ripple, selectionfunction) {
+    MDCRipple = ripple;
     verification = token;
+    OnSelection = selectionfunction;
     searchfield = $("#search_textfield");
     searchfield_inner = $(searchfield.children("input"));
     pagesbuttons = $('#search_pagesbuttons');
@@ -48,10 +57,10 @@ export function FullPageSearch(token) {
             var fieldval = searchfield_inner.val();
             clearPages();
             if (fieldval === "") {
-                getSearchData(calculateSpace, 0, "", verification);
+                getSearchData(calculateSpace, 0, "");
             }
             else {
-                getSearchData(calculateSpace, 0, fieldval, verification);
+                getSearchData(calculateSpace, 0, fieldval);
             }
         }, 250);
     });
@@ -60,23 +69,23 @@ export function FullPageSearch(token) {
         var searchfield_label = $(searchfield.children("#search_textfield_label"));
         if (searchfield_inner.val() === "") {
             searchfield_label.show(100);
-            getSearchData(calculateSpace, 0, "", verification);
+            getSearchData(calculateSpace, 0, "");
         }
         else {
             searchfield_label.hide(100);
         }
     });
-    $(window).resize(function () {
+    var xss = new sensorx(document.getElementById('search_side'), function () {
         DisablePagesCounter();
         showLoader();
         clearTimeout(resize_timer);
         resize_timer = setTimeout(function () {
             var fieldval = searchfield_inner.val();
             if (fieldval === "") {
-                getSearchData(calculateSpace, 0, "", verification);
+                getSearchData(calculateSpace, 0, "");
             }
             else {
-                getSearchData(calculateSpace, 0, fieldval, verification);
+                getSearchData(calculateSpace, 0, fieldval);
             }
         }, 250);
     });
@@ -84,15 +93,15 @@ export function FullPageSearch(token) {
     $("#search_pagesbuttons_back").click(function () { BackPage() });
     $("#search_pagesbuttons_next").click(function () { NextPage() });
 
-    getSearchData(calculateSpace, 0, "", verification);
+    getSearchData(calculateSpace, 0, "");
 }
 
-export function getSearchData(count, page, value, token) {
+export function getSearchData(count, page, value) {
     $.ajax({
         url: window.location.pathname + "?handler=GetName",
         type: 'POST',
         data: {
-            __RequestVerificationToken: token,
+            __RequestVerificationToken: verification,
             count: count,
             page: page,
             name: value.trim()
@@ -100,6 +109,20 @@ export function getSearchData(count, page, value, token) {
         success: function (result) {
             clearList();
             displayData(result);
+        }
+    });
+}
+
+export function getItem(tag) {
+    $.ajax({
+        url: window.location.pathname + "?handler=GetItem",
+        type: 'POST',
+        data: {
+            __RequestVerificationToken: verification,
+            tag: tag
+        },
+        success: function (result) {
+            OnSelection(result);
         }
     });
 }
@@ -124,7 +147,7 @@ function hideInfo() {
 
 function displayData(response) {
     if (response !== null) {
-        if (response.schools.length == 0) {
+        if (response.schools.length === 0) {
             showInfo("Brak wyników...<br/>Spróbuj użyć innego wyrażenia");    
         }
         for (var i = 0; i < response.schools.length; i++) {
@@ -155,14 +178,14 @@ function NextPage() {
     if (isNextAvailable()) {
         currentpage = currentpage + 1;
         displayPagesCounter();
-        getSearchData(calculateSpace, currentpage, searchfield_inner.val(), verification);
+        getSearchData(calculateSpace, currentpage, searchfield_inner.val());
     } 
 }
 function BackPage() {
     if (isBackAvailable()) {
         currentpage = currentpage - 1;
         displayPagesCounter();
-        getSearchData(calculateSpace, currentpage, searchfield_inner.val(), verification);
+        getSearchData(calculateSpace, currentpage, searchfield_inner.val());
     }  
 }
 

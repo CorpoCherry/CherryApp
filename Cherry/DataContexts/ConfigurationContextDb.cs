@@ -14,6 +14,8 @@ namespace Cherry.Web.DataContexts
     {
         DbSet<School> Schools { get; set; }
         DbSet<City> Cities { get; set; }
+
+        School GetSchool(string tag);
     }
 
     public class ConfigurationContextDb : DbContext, IConfigurationContextDb
@@ -28,6 +30,13 @@ namespace Cherry.Web.DataContexts
             modelBuilder.Entity<School>()
                 .HasIndex(c => c.Tag)
                 .IsUnique();
+        }
+
+        public School GetSchool(string tag)
+        {
+            return (from x in Schools
+                    where x.Tag == tag
+                    select x).Single();
         }
 
         public virtual DbSet<School> Schools { get; set; }

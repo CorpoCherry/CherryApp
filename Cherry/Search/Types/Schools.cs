@@ -27,6 +27,8 @@ namespace Cherry.Web.Search
         public int RequestedPage;
         public String RequestedValue;
 
+        private readonly IConfigurationContextDb Database;
+
         public SchoolSearcher(IConfigurationContextDb _DB, ref int _RequestedCount, ref int _RequestedPage, ref string _RequestedValue)
         {
             RequestedCount = _RequestedCount;
@@ -35,6 +37,7 @@ namespace Cherry.Web.Search
 
             Schools = _DB.Schools;
             Cities = _DB.Cities;
+            Database = _DB;
         }
 
         public void Search()
@@ -78,13 +81,6 @@ namespace Cherry.Web.Search
             return false;
         }
 
-        private School GetByTag(string tag)
-        {
-            return (from x in Schools
-                    where x.Tag == tag
-                    select x).Single();
-        }
-
         private List<School> GetByCity(string[] city)
         {
             List<School> temp = new List<School>();
@@ -122,7 +118,7 @@ namespace Cherry.Web.Search
             {
                 return new List<School>
                 {
-                    GetByTag(prototag[0])
+                    Database.GetSchool(prototag[0])
                 };
             }
 
