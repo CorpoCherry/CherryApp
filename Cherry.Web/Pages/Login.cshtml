@@ -1,0 +1,73 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Logowanie";
+    Layout = "_BasicLayout";
+}
+@section Styles {<environment names="Production">
+        <link rel="stylesheet" href="~/css/pages/login.min.css" asp-append-version="true" />
+    </environment>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/pages/login.css" asp-append-version="true" />
+    </environment>}
+<div class="mdc-theme--background mdc-elevation--z24 mdc-elevation-transition" id="logincard">
+    <div class="mdc-linear-progress mdc-linear-progress--closed" role="progressbar" id="progressBar">
+        <div class="mdc-linear-progress__buffering-dots"></div>
+        <div class="mdc-linear-progress__buffer"></div>
+        <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+            <span class="mdc-linear-progress__bar-inner"></span>
+        </div>
+        <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+            <span class="mdc-linear-progress__bar-inner"></span>
+        </div>
+    </div>
+
+    <h1 class="logo-text mdc-typography--display4">CherryApp</h1>
+    <form method="POST" id="loginform">
+        @Html.AntiForgeryToken()
+        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <input type="text" id="my-text-field" class="mdc-text-field__input" required minlength=4 asp-for="Input.Login">
+            <label class="mdc-floating-label" for="my-text-field">Login</label>
+            <div class="mdc-line-ripple"></div>
+        </div>
+        <br>
+        <div class="mdc-text-field" data-mdc-auto-init="MDCTextField">
+            <input type="password" id="pw" class="mdc-text-field__input" required minlength=8 asp-for="Input.Password">
+            <label class="mdc-floating-label" for="my-text-field">Hasło</label>
+            <div class="mdc-line-ripple"></div>
+        </div>
+        <br>
+        <div class="marginup margindown mdc-form-field">
+            <div class="mdc-checkbox" data-mdc-auto-init="MDCCheckbox">
+                <input type="checkbox" id="remembercheckbox" class="mdc-checkbox__native-control" asp-for="Input.Remember" />
+                <div class="mdc-checkbox__background">
+                    <svg class="mdc-checkbox__checkmark"
+                         viewBox="0 0 24 24">
+                        <path class="mdc-checkbox__checkmark__path"
+                              fill="none"
+                              stroke="white"
+                              d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+                    </svg>
+                    <div class="mdc-checkbox__mixedmark"></div>
+                </div>
+            </div>
+            <label class="center" for="remembercheckbox">Zapamiętaj mnie</label>
+        </div>
+        <br>
+        <button type="submit" id="loginBtn" data-mdc-auto-init="MDCRipple" asp-page-handler="Login" asp-route-returnUrl="@Model.ReturnUrl" class="mdc-button mdc-button--raised margindown">ZALOGUJ</button>
+        @if (!String.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <p id="error_message">
+                @Model.ErrorMessage
+            </p>
+        }
+    </form>
+</div>
+@section Scripts {
+    <environment names="Production">
+        <script src="~/js/pages/login.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Development">
+        <script src="~/js/pages/login.js" asp-append-version="true"></script>
+    </environment>
+}
