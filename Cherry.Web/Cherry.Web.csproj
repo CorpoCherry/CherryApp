@@ -8,7 +8,15 @@
     <Configurations>Development;Production;Clear;DEV</Configurations>
     <Platforms>AnyCPU;x64</Platforms>
     <ApplicationIcon>Other\Images\Touch\favicon.ico</ApplicationIcon>
+    <UserSecretsId>e592d581-bfe1-4374-ae3c-13e05b878443</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Search\Test.cs" />
@@ -26,15 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\img\touch\" />
   </ItemGroup>
 
   <ItemGroup>
