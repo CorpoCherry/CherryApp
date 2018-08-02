@@ -2,6 +2,6 @@
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
     body {
         padding-top: 50px;
-        padding-bottom: 30px;
+        padding-bottom: 40px;
     }
 }
