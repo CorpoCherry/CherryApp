@@ -33,7 +33,6 @@ namespace Cherry.Data.School
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Load key and generate connection string
-            
             ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(loginManager.Login);
 
             //Login to database

@@ -22,7 +22,7 @@ namespace Cherry.Web
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        private readonly IConfiguration Configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -74,6 +74,17 @@ namespace Cherry.Web
 
             // ================ Cookies ================
 
+            services.ConfigureApplicationCookie(options => {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.Cookie.Expiration = new TimeSpan(0, 0, 0, 1);
+                options.SlidingExpiration = true;
+
+                options.LoginPath = "/Login";
+                options.LogoutPath = "/Logout";
+                options.AccessDeniedPath = "/AccessDenied";
+            });
+
             // ================ GDPR/RODO ================
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -83,7 +94,7 @@ namespace Cherry.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IdentityContext identityDb, ConfigurationContext app_configuration, UserManager<User> users)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -99,12 +110,11 @@ namespace Cherry.Web
             else
             {
                 app.UseExceptionHandler("/Error");
+                app.UseForwardedHeaders(new ForwardedHeadersOptions
+                {
+                    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+                });
             }
-
-            app.UseForwardedHeaders(new ForwardedHeadersOptions
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
