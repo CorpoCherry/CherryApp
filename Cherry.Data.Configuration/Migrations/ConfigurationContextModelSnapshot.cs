@@ -68,7 +68,7 @@ namespace Cherry.Data.Configuration.Migrations
             modelBuilder.Entity("Cherry.Data.Configuration.Customers.Tenant", b =>
                 {
                     b.HasOne("Cherry.Data.Configuration.Locales.City", "City")
-                        .WithMany()
+                        .WithMany("Tenants")
                         .HasForeignKey("CityName");
                 });
 #pragma warning restore 612, 618

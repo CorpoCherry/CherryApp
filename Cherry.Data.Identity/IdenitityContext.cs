@@ -12,7 +12,7 @@ namespace Cherry.Data.Identity
         private readonly ConfigurationContext _configurationContext;
         private readonly LoginManager loginManager;
 
-        public IdentityContext(ConfigurationContext configurationContext, DbContextOptions<IdentityContext> options) : base(options)
+        public IdentityContext(ConfigurationContext configurationContext)
         {
             _configurationContext = configurationContext;
             loginManager = new LoginManager("cherry_identity", "identity", _configurationContext);
@@ -39,11 +39,12 @@ namespace Cherry.Data.Identity
         }
     }
 
-    //public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<IdentityDbContext<User>>
-    //{
-    //    public IdentityContext CreateDbContext(string[] args)
-    //    {
-    //        return new IdentityContext();
-    //    }
-    //}
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<IdentityContext>
+    {
+        public IdentityContext CreateDbContext(string[] args)
+        {
+            
+            return new IdentityContext(new ConfigurationContext());
+        }
+    }
 }

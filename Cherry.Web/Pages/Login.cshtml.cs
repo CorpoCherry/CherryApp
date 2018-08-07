@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Cherry.Data.Configuration;
 using Cherry.Data.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -15,18 +16,22 @@ namespace Cherry.Web.Pages
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
+        private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ConfigurationContext _configurationContext;
 
         public string ReturnUrl { get; set; }
 
         [TempData]
         public string ErrorMessage { get; set; }
 
-        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger, UserManager<User> userManager, ConfigurationContext configurationContext)
         {
+            _configurationContext = configurationContext;
             _signInManager = signInManager;
             _logger = logger;
+            _userManager = userManager;
         }
 
         public class InputModel
@@ -45,12 +50,14 @@ namespace Cherry.Web.Pages
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public IActionResult OnGet(string returnUrl)
+        public async Task<IActionResult> OnGet(string returnUrl)
         {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToPage("Index");
             }
+            await Data.School.Seed.School(_configurationContext);
+            await Data.Identity.Seed.Users(_userManager);
             ErrorMessage = "";
             ReturnUrl = returnUrl;
             return Page();

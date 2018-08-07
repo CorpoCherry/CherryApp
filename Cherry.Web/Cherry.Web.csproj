@@ -5,18 +5,11 @@
     <AssemblyName>Cherry.Web</AssemblyName>
     <RootNamespace>Cherry.Web</RootNamespace>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
-    <Configurations>Development;Production;Clear;DEV</Configurations>
+    <Configurations>DEV;PROD</Configurations>
     <Platforms>AnyCPU;x64</Platforms>
     <ApplicationIcon>Other\Images\Touch\favicon.ico</ApplicationIcon>
     <UserSecretsId>e592d581-bfe1-4374-ae3c-13e05b878443</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="wwwroot\**" />
-    <Content Remove="wwwroot\**" />
-    <EmbeddedResource Remove="wwwroot\**" />
-    <None Remove="wwwroot\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="Search\Test.cs" />
@@ -47,59 +40,8 @@
     <ProjectReference Include="..\Cherry.Data.School\Cherry.Data.School.csproj" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Development'">
-    <TypeScriptTarget>ES5</TypeScriptTarget>
-    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
-    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
-    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-    <TypeScriptOutFile>export.js</TypeScriptOutFile>
-    <TypeScriptOutDir />
-    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
-    <TypeScriptSourceMap>True</TypeScriptSourceMap>
-    <TypeScriptMapRoot />
-    <TypeScriptSourceRoot />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|AnyCPU'">
-    <DefineConstants>DEBUG;TRACE;DEVELOPMENT;NETCOREAPP2_0</DefineConstants>
-    <Optimize>false</Optimize>
-    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Production|AnyCPU'">
-    <DefineConstants>PRODUCTION;NETCOREAPP2_0</DefineConstants>
-    <Optimize>true</Optimize>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Production|x64'">
-    <Optimize>true</Optimize>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DebugType>none</DebugType>
-    <DebugSymbols>false</DebugSymbols>
-    <DefineConstants></DefineConstants>
-    <OutputPath>bin\prod</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development|x64'">
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <Optimize>false</Optimize>
-    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\dev</OutputPath>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DEV|x64'">
-    <DefineConstants>DEBUG;TRACE;DEV;NETCOREAPP;NETCOREAPP2_1</DefineConstants>
-    <Optimize>false</Optimize>
-  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
 
 </Project>

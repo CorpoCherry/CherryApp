@@ -17,16 +17,20 @@ namespace Cherry.Data.Configuration
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Tenant>()
-            //    .HasIndex(c => c.Tag)
-            //    .IsUnique();
+            modelBuilder.Entity<City>()
+            .HasMany(c => c.Tenants)
+            .WithOne(t => t.City);
+
+            modelBuilder.Entity<Tenant>()
+            .HasOne(t => t.City)
+            .WithMany(c => c.Tenants);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //Load key and generate connection string
             Key.LoadKey(out string key);
-            ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder("config", "cherry", key);
+            ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder("config", "cherry", key, true);
             ConnectionString = connectionStringBuilder.ConnectionString;
 
             //Login to database
@@ -44,6 +48,7 @@ namespace Cherry.Data.Configuration
         {
             return Tenants.Find(tag);
         }
+
     }
 
     public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<ConfigurationContext>

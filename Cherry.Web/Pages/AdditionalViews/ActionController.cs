@@ -1,15 +1,23 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
+using Cherry.Data.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cherry.Web.Pages.AdditionalViews
 {
     public class ActionController : Controller
     {
+        private readonly SignInManager<User> _signInManager;
+
         public async Task<IActionResult> LogOut()
         {
-            await HttpContext.SignOutAsync();
-            return RedirectToPage("/Index");
+            await _signInManager.SignOutAsync();
+            return RedirectToPage("/Login");
+        }
+
+        public ActionController(SignInManager<User> signInManager)
+        {
+            _signInManager = signInManager;
         }
     }
 }

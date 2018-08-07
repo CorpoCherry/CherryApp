@@ -2,7 +2,7 @@
 
 namespace Cherry.Data.Configuration.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class Init0 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

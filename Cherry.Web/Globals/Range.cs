@@ -15,9 +15,8 @@ namespace Cherry.Web.Globals
 
             return new Range
             {
-                Min = Maximum,
-                Max = Minimum
-                // Hehe
+                Min = Minimum,
+                Max = Maximum
             };
         }
     }

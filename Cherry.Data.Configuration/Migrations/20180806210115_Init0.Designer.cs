@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cherry.Data.Configuration.Migrations
 {
     [DbContext(typeof(ConfigurationContext))]
-    [Migration("20180725211012_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20180806210115_Init0")]
+    partial class Init0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,7 +70,7 @@ namespace Cherry.Data.Configuration.Migrations
             modelBuilder.Entity("Cherry.Data.Configuration.Customers.Tenant", b =>
                 {
                     b.HasOne("Cherry.Data.Configuration.Locales.City", "City")
-                        .WithMany()
+                        .WithMany("Tenants")
                         .HasForeignKey("CityName");
                 });
 #pragma warning restore 612, 618

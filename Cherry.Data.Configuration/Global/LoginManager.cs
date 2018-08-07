@@ -55,7 +55,7 @@ namespace Cherry.Data.Configuration.Global
         {
             DatabaseLogin databaseLogin = new DatabaseLogin();
             if (string.IsNullOrEmpty(IP))
-                databaseLogin.IP = "localhost";
+                databaseLogin.IP = DatabaseParamaters.IsInDevelopment ? "localhost" : "cherryapp.pl";
             else
                 databaseLogin.IP = IP;
 
@@ -72,12 +72,17 @@ namespace Cherry.Data.Configuration.Global
             databaseLogin.Password = BCrypt.Net.BCrypt.HashPassword(Path.GetRandomFileName());
 
             using (MySqlConnection Connection = new MySqlConnection(_configurationContext.ConnectionString))
-            using (MySqlCommand Command = new MySqlCommand($"CREATE USER '{databaseLogin.Login}'@'{databaseLogin.IP}' IDENTIFIED BY '{databaseLogin.Password}'; GRANT ALL ON cherry_{databaseLogin.Name}.* TO '{databaseLogin.Login}'@'{databaseLogin.IP}'; GRANT CREATE ON *.* TO '{databaseLogin.Login}'@'{databaseLogin.IP}';", Connection))
+            using (MySqlCommand Command = new MySqlCommand($"CREATE USER '{databaseLogin.Login}'@'%' IDENTIFIED BY '{databaseLogin.Password}'; GRANT ALL ON cherry_{databaseLogin.Name}.* TO '{databaseLogin.Login}'@'%'; GRANT CREATE ON *.* TO '{databaseLogin.Login}'@'%';", Connection))
             {
                 Connection.Open();
                 Command.ExecuteNonQuery();
             }
-            
+            //using (MySqlCommand Command = new MySqlCommand($"CREATE USER '{databaseLogin.Login}'@'{databaseLogin.IP}' IDENTIFIED BY '{databaseLogin.Password}'; GRANT ALL ON cherry_{databaseLogin.Name}.* TO '{databaseLogin.Login}'@'{databaseLogin.IP}'; GRANT CREATE ON *.* TO '{databaseLogin.Login}'@'{databaseLogin.IP}';", Connection))
+            //{
+            //    Connection.Open();
+            //    Command.ExecuteNonQuery();
+            //}
+
 
             _configurationContext.DatabaseLogins.Add(databaseLogin);
             _configurationContext.SaveChanges();
