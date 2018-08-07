@@ -3,24 +3,42 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cherry.Web", "Cherry\Cherry.Web.csproj", "{9A99AF86-2EEA-4F67-8757-84B118A43942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cherry.Web", "Cherry.Web\Cherry.Web.csproj", "{9A99AF86-2EEA-4F67-8757-84B118A43942}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cherry.Data", "Cherry.Data\Cherry.Data.csproj", "{365F343A-72CB-48A6-BDDF-9D8344CE1706}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cherry.Data.Identity", "Cherry.Data.Identity\Cherry.Data.Identity.csproj", "{C419A23A-B545-460B-A5BB-DEC49ED5CCDB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cherry.Data.Configuration", "Cherry.Data.Configuration\Cherry.Data.Configuration.csproj", "{6F302F26-602E-43EE-A8A7-759428780061}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cherry.Data.School", "Cherry.Data.School\Cherry.Data.School.csproj", "{06E41F38-BA8D-4294-8891-DCDFA5D021D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cherry.Web.School", "Cherry.Web.School\Cherry.Web.School.csproj", "{6B1306C2-422B-4CE2-91FC-8666B3A5B463}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Development|x64 = Development|x64
-		Production|x64 = Production|x64
+		DEV|x64 = DEV|x64
+		PROD|x64 = PROD|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9A99AF86-2EEA-4F67-8757-84B118A43942}.Development|x64.ActiveCfg = Development|x64
-		{9A99AF86-2EEA-4F67-8757-84B118A43942}.Development|x64.Build.0 = Development|x64
-		{9A99AF86-2EEA-4F67-8757-84B118A43942}.Production|x64.ActiveCfg = Production|x64
-		{9A99AF86-2EEA-4F67-8757-84B118A43942}.Production|x64.Build.0 = Production|x64
-		{365F343A-72CB-48A6-BDDF-9D8344CE1706}.Development|x64.ActiveCfg = Development|x64
-		{365F343A-72CB-48A6-BDDF-9D8344CE1706}.Development|x64.Build.0 = Development|x64
-		{365F343A-72CB-48A6-BDDF-9D8344CE1706}.Production|x64.ActiveCfg = Production|x64
-		{365F343A-72CB-48A6-BDDF-9D8344CE1706}.Production|x64.Build.0 = Production|x64
+		{9A99AF86-2EEA-4F67-8757-84B118A43942}.DEV|x64.ActiveCfg = DEV|x64
+		{9A99AF86-2EEA-4F67-8757-84B118A43942}.DEV|x64.Build.0 = DEV|x64
+		{9A99AF86-2EEA-4F67-8757-84B118A43942}.PROD|x64.ActiveCfg = PROD|x64
+		{9A99AF86-2EEA-4F67-8757-84B118A43942}.PROD|x64.Build.0 = PROD|x64
+		{C419A23A-B545-460B-A5BB-DEC49ED5CCDB}.DEV|x64.ActiveCfg = DEV|x64
+		{C419A23A-B545-460B-A5BB-DEC49ED5CCDB}.DEV|x64.Build.0 = DEV|x64
+		{C419A23A-B545-460B-A5BB-DEC49ED5CCDB}.PROD|x64.ActiveCfg = PROD|x64
+		{C419A23A-B545-460B-A5BB-DEC49ED5CCDB}.PROD|x64.Build.0 = PROD|x64
+		{6F302F26-602E-43EE-A8A7-759428780061}.DEV|x64.ActiveCfg = DEV|x64
+		{6F302F26-602E-43EE-A8A7-759428780061}.DEV|x64.Build.0 = DEV|x64
+		{6F302F26-602E-43EE-A8A7-759428780061}.PROD|x64.ActiveCfg = PROD|x64
+		{6F302F26-602E-43EE-A8A7-759428780061}.PROD|x64.Build.0 = PROD|x64
+		{06E41F38-BA8D-4294-8891-DCDFA5D021D6}.DEV|x64.ActiveCfg = DEV|x64
+		{06E41F38-BA8D-4294-8891-DCDFA5D021D6}.DEV|x64.Build.0 = DEV|x64
+		{06E41F38-BA8D-4294-8891-DCDFA5D021D6}.PROD|x64.ActiveCfg = PROD|x64
+		{06E41F38-BA8D-4294-8891-DCDFA5D021D6}.PROD|x64.Build.0 = PROD|x64
+		{6B1306C2-422B-4CE2-91FC-8666B3A5B463}.DEV|x64.ActiveCfg = DEV|x64
+		{6B1306C2-422B-4CE2-91FC-8666B3A5B463}.DEV|x64.Build.0 = DEV|x64
+		{6B1306C2-422B-4CE2-91FC-8666B3A5B463}.PROD|x64.ActiveCfg = PROD|x64
+		{6B1306C2-422B-4CE2-91FC-8666B3A5B463}.PROD|x64.Build.0 = PROD|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

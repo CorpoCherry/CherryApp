@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Cherry.Web</AssemblyName>
+    <RootNamespace>Cherry.Web</RootNamespace>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <Configurations>DEV;PROD</Configurations>
+    <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>Other\Images\Touch\favicon.ico</ApplicationIcon>
+    <UserSecretsId>e592d581-bfe1-4374-ae3c-13e05b878443</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Search\Test.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Styles\Pages\Operators.scss" />
+    <None Remove="Styles\Pages\Schools.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Styles\Pages\Operators.scss" />
+    <Content Include="Styles\Pages\Schools.scss" />
+    <Content Include="Styles\Pages\Index.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cherry.Data.Configuration\Cherry.Data.Configuration.csproj" />
+    <ProjectReference Include="..\Cherry.Data.Identity\Cherry.Data.Identity.csproj" />
+    <ProjectReference Include="..\Cherry.Data.School\Cherry.Data.School.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+</Project>

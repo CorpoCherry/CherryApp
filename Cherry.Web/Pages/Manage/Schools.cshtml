@@ -1,0 +1,118 @@
+﻿@page
+@model SchoolsModel
+@{
+    ViewData["Title"] = "Szkoły";
+    ViewData["TitleBar"] = "Szkoły";
+}
+@section Styles
+    {
+    <environment names="Production">
+        <link rel="stylesheet" href="~/css/pages/schools.min.css" asp-append-version="true" />
+    </environment>
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/pages/schools.css" asp-append-version="true" />
+    </environment>
+        <style>
+            #selected-logo {
+                border-radius: 50%;
+            } 
+        </style>
+}
+@Html.AntiForgeryToken()
+<main>
+    <div id="search">
+        <div id="search_side">
+            <div class="mdc-text-field" id="search_textfield">
+                <div id="search_textfield_label">Wyszukiwanie</div>
+                <input type="text" id="search_textfield_inner" class="mdc-text-field__input">
+                <div class="mdc-line-ripple"></div>
+            </div>
+            <div id="search_pagesbuttons">
+                <div id="search_pagesbuttons_bg"></div>
+                <button class="mdc-button" id="search_pagesbuttons_back">
+                    <
+                </button>
+                <div id="search_pagesbuttons_number">1/1</div>
+                <button class="mdc-button" id="search_pagesbuttons_next">
+                    >
+                </button>
+            </div>
+            <div id="search_info">
+                Nie znaleziono wyników!
+            </div>
+            <div id="search_loading">
+                <div id="search_loading_main"></div>
+            </div>
+            <div id="search_panel">
+                <div class="mdc-list" id="search_panel_inner">
+                </div>
+            </div>
+        </div>
+        <div id="search_selection_first">Wybierz szkołę z listy...</div>
+        <div id="search_selection">
+            <img src="http://miesarch.com/uploads/images/works/3678-22697.jpg" id="search_selection_logo">
+            <p id="search_selection_name">Zespół Szkół nr 2 w Legionowie</p>
+            <p id="search_selection_tag" class="mdc-typography--subtitle1">zsp2legionowo</p>
+            <div id="search_selection_operations">
+                <button class="mdc-button" id="search_selection_operations_edit" data-mdc-auto-init="MDCRipple">Zmień tag</button>
+                <button class="mdc-button mdc-button--unelevated" id="search_selection_operations_delete" data-mdc-auto-init="MDCRipple">Usuń</button>
+            </div>
+        </div>
+    </div>
+</main>
+<aside id="delete-dialog"
+       class="mdc-dialog"
+       role="alertdialog">
+    <div class="mdc-dialog__surface">
+        <header class="mdc-dialog__header">
+            <h2 class="mdc-dialog__header__title">
+                Czy na pewno chcesz usunąć tą szkołę?
+            </h2>
+        </header>
+        <section class="mdc-dialog__body">
+            Pamiętaj, że ta czynność jest SZCZEGÓLNIE niebezpieczna! Usuniesz WSZYSTKIE dane szkoły, a cała operacja zostanie odnotowana w celach RODO...
+        </section>
+        <footer class="mdc-dialog__footer">
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Anuluj</button>
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Usuń</button>
+        </footer>
+    </div>
+    <div class="mdc-dialog__backdrop"></div>
+</aside>
+<aside id="edit-dialog"
+       class="mdc-dialog">
+    <div class="mdc-dialog__surface">
+        <header class="mdc-dialog__header">
+            <h2 class="mdc-dialog__header__title">
+                Podaj nowy tag szkoły...
+            </h2>
+        </header>
+        <section class="mdc-dialog__body">
+            <div>
+                <div class="mdc-text-field mdc-text-field--outlined" id="tagfield" data-mdc-auto-init="MDCTextField">
+                    <input type="text" id="tf-outlined" class="mdc-text-field__input">
+                    <label for="tf-outlined" class="mdc-floating-label">Nowy Tag</label>
+                    <div class="mdc-notched-outline">
+                        <svg>
+                            <path class="mdc-notched-outline__path" />
+                        </svg>
+                    </div>
+                    <div class="mdc-notched-outline__idle"></div>
+                </div>
+            </div>
+        </section>
+        <footer class="mdc-dialog__footer">
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel">Anuluj</button>
+            <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept">Zatwierdź</button>
+        </footer>
+    </div>
+    <div class="mdc-dialog__backdrop"></div>
+</aside>
+@section Scripts{
+    <environment names="Production">
+        <script src="~/js/pages/schools.min.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Development">
+        <script src="~/js/pages/schools.js" asp-append-version="true"></script>
+    </environment>
+}
